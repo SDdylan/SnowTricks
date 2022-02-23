@@ -28,6 +28,11 @@ class User
     /**
      * @ORM\Column(type="string", length=255)
      */
+    private $password;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $email;
 
     /**
@@ -60,6 +65,7 @@ class User
      */
     private $comments;
 
+
     public function __construct()
     {
         $this->tricks = new ArrayCollection();
@@ -81,6 +87,22 @@ class User
         $this->pseudo = $pseudo;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param mixed $password
+     */
+    public function setPassword($password): void
+    {
+        $this->password = $password;
     }
 
     public function getEmail(): ?string
