@@ -11302,3 +11302,11 @@ textarea.form-control-lg {
     background-size: cover;
     background-attachment: scroll;*/
 }
+
+
+@media (min-width: 800px) {
+    .rowtricks {
+        margin-bottom: 50px;
+        margin-top: 50px;
+    }
+}

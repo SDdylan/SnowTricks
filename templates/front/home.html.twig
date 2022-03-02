@@ -1,12 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block header %}
-    <!-- Header - set the background image for the header in the line below-->
-    <header class="py-5 bg-image-full" style="background-image: url('https://source.unsplash.com/wfh8dDlNFOk/1600x900')">
-        <div class="text-center my-5">
-            <img class="img-fluid rounded-circle mb-4" src="https://dummyimage.com/150x150/6c757d/dee2e6.jpg" alt="..." />
-            <h1 class="text-white fs-3 fw-bolder">Full Width Pics</h1>
-            <p class="text-white-50 mb-0">Landing Page Template</p>
+    <!-- Header - set the background image for the header in the line below  assets/img/img1.jpg-->
+    <header class="py-1 bg-image-full d-flex" style="background-image: url('{{ asset('img/img3.jpeg') }}'); background-size: cover;height: 50em">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7" style="margin-top: 15em">
+                    <div class="text-center my-5">
+                        <div class="p-2"><h1 class="text-white fw-bolder">Bienvenue sur Snow Tricks</h1></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex align-items-end flex-column">
+            <div class="mt-auto p-2">
+                <i class="fas fa-arrow-down fa-3x" style="color: white"></i>
+            </div>
         </div>
     </header>
 {% endblock %}
@@ -14,31 +23,65 @@
 {% block body %}
     <!-- Content section-->
     <section class="py-5">
-        <div class="container my-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <h2>Full Width Backgrounds</h2>
-                    <p class="lead">A single, lightweight helper class allows you to add engaging, full width background images to sections of your page.</p>
-                    <p class="mb-0">The universe is almost 14 billion years old, and, wow! Life had no problem starting here on Earth! I think it would be inexcusably egocentric of us to suggest that we're alone in the universe.</p>
+        <div class="my-5">
+            {%  for i in 1..3 %}
+            <div class="row justify-content-center text-center align-items-center rowtricks">
+                {% for j in 1..5 %}
+                <div class="col d-flex justify-content-center">
+                    <div class="card" style="width: 18rem; text-align: left">
+                        <img class="card-img-top" src="https://dummyimage.com/150x100/6c757d/dee2e6.jpg" alt="Card image cap">
+                        <div class="card-body row">
+                            <a class="col-8" href="/">Card title</a>
+                            <a class="col-2" href="/"><i color="black" class="fas fa-pen"></i></a>
+                            <a class="col-2" href="/"><i color="red" class="fa fa-times" ></i></a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </section>
-    <!-- Image element - set the background image for the header in the line below-->
-    <div class="py-5 bg-image-full" style="background-image: url('https://source.unsplash.com/4ulffa6qoKA/1200x800')">
-        <!-- Put anything you want here! The spacer below with inline CSS is just for demo purposes!-->
-        <div style="height: 20rem"></div>
-    </div>
-    <!-- Content section-->
-    <section class="py-5">
-        <div class="container my-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <h2>Engaging Background Images</h2>
-                    <p class="lead">The background images used in this template are sourced from Unsplash and are open source and free to use.</p>
-                    <p class="mb-0">I can't tell you how many people say they were turned off from science because of a science teacher that completely sucked out all the inspiration and enthusiasm they had for the course.</p>
+                {% endfor %}
+
+                <!--
+                <div class="col d-flex justify-content-center">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="https://dummyimage.com/150x100/6c757d/dee2e6.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
                 </div>
+                <div class="col d-flex justify-content-center">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="https://dummyimage.com/150x100/6c757d/dee2e6.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="https://dummyimage.com/150x100/6c757d/dee2e6.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="https://dummyimage.com/150x100/6c757d/dee2e6.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>-->
             </div>
+            {% endfor %}
         </div>
     </section>
 {% endblock %}
