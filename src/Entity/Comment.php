@@ -28,6 +28,11 @@ class Comment
     private $createdAt;
 
     /**
+     * @ORM\Column (type="boolean")
+     */
+    private $isVerified;
+
+    /**
      * @ORM\ManyToOne(targetEntity=Trick::class, inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -66,6 +71,16 @@ class Comment
         $this->createdAt = $createdAt;
 
         return $this;
+    }
+
+    public function getIsVerified()
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified($isVerified): void
+    {
+        $this->isVerified = $isVerified;
     }
 
     public function getTrick(): ?Trick

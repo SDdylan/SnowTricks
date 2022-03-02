@@ -8,12 +8,13 @@ use App\Entity\Media;
 use App\Entity\Trick;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserFixtures extends Fixture
 {
+
     private UserPasswordHasherInterface $hasher;
 
     public function __construct(UserPasswordHasherInterface $hasher)
@@ -21,83 +22,80 @@ class UserFixtures extends Fixture
         $this->hasher = $hasher;
     }
 
+    public function buildUser(string $email, string $password, array $role): User
+    {
+        $faker = Factory::create('fr_FR');
+        //Creation des utilisateurs
+        $user = new User();
+
+        $user->setEmail($email);
+        $user->setFirstName($faker->firstName());
+        $user->setLastName($faker->lastName());
+        $user->setUsername($faker->userName());
+        $user->setImageUrl($faker->imageUrl(150, 150, 'animals', true));
+        $user->setRoles($role);
+        $user->setPassword($password);
+
+        return $user;
+    }
+
 
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create('fr_FR');
-        $randRole = ['["ROLE_ADMIN"]', '["ROLE_USER"]'];
-        $typeMedia = ['image','video'];
 
+        //creation users
+        $simpleUser = $this->buildUser('dylan.sardi@hotmail.fr', '123456789@u', [User::getSimpleUser()]);
+        $manager->persist($simpleUser);
+        $adminUser = $this->buildUser('dylagia@gmail.com', '123456789@a', [User::getAdminUser()]);
+        $manager->persist($adminUser);
 
+        //creation des groupes
+        $group1 = new Group();
+        $group1->setDescription($faker->sentence(2))
+              ->setTitle($faker->word());
+        $manager->persist($group1);
 
-        for($i = 1; $i <= 4; $i++)
-        {
-            //Creation des utilisateurs
-            $user = new User();
-            $password = $this->hasher->hashPassword($user, $faker->password());
+        $group2 = new Group();
+        $group2->setDescription($faker->sentence(2))
+            ->setTitle($faker->word());
+        $manager->persist($group2);
 
-            $user->setEmail($faker->email())
-                ->setFirstName($faker->firstName())
-                ->setLastName($faker->lastName())
-                ->setPseudo($faker->userName())
-                ->setImageUrl($faker->imageUrl(150, 150, 'animals', true))
-                ->setRole($randRole[$faker->numberBetween(0,1)])
-                ->setPassword($password);
+        //attribution random de group ou user dans les tricks
+        $randomGroup = rand(1, 2);
+        $randomUser = rand(1, 2);
 
-            $manager->persist($user);
+        //Creation de tricks
+        for($j=1; $j<=20; $j++) {
+            $trick = new Trick();
 
-            //creation des groupes
-            $group = new Group();
+            $group = ${"group".$randomGroup};
+            $user = $randomUser === 1 ? $simpleUser : $adminUser;
 
-            $group->setDescription($faker->sentence(10))
-                  ->setTitle($faker->sentence(4));
+            $trick->setTitle($faker->sentence(4))
+                ->setDescription($faker->paragraph(4))
+                ->setCreatedAt($faker->dateTime())
+                ->setGroup($group)
+                ->setUser($user);
 
-            $manager->persist($group);
+            $manager->persist($trick);
 
-            //creation de trick
-            for($j=1; $j<=3; $j++)
-            {
-                $trick = new Trick();
+            //creation d'une image et d'une video pour le trick
+            //Video
+            $mediaVideo = new Media();
+            $mediaVideo->setTrick($trick)
+                ->setUrl('https://youtu.be/HgzGwKwLmgM')
+                ->setType(Media::getVideoType());
+            $manager->persist($mediaVideo);
 
-                $trick->setTitle($faker->sentence(4))
-                      ->setDescription($faker->paragraph(4))
-                      ->setCreatedAt($faker->dateTime())
-                      ->setGrp($group)
-                      ->setUsers($user);
-                      //->setModifiedAt();
-
-                $manager->persist($trick);
-
-                //creation des commentaires et des media
-                for($k=1; $k<=2; $k++) {
-                    $comment = new Comment();
-
-                    $comment->setCreatedAt($faker->dateTime())
-                        ->setContent($faker->paragraph(3))
-                        ->setUser($user)
-                        ->setTrick($trick);
-
-                    $manager->persist($comment);
-
-                    //media
-                    $media = new Media();
-                    $type = $k - 1;
-
-                    $media->setType($typeMedia[$type])
-                          ->setTrick($trick);
-
-                    //url en fonction du type de media
-                    if ($media->getType() === 'video') {
-                        $media->setUrl($faker->imageUrl(250, 250));
-                    } elseif ($media->getType() === 'image') {
-                        $media->setUrl('https://youtu.be/HgzGwKwLmgM');
-                    }
-
-                    $manager->persist($media);
-                }
-            }
+            //Image
+            $mediaImage = new Media();
+            $mediaImage->setTrick($trick)
+                ->setUrl($faker->imageUrl(250, 250))
+                ->setType(Media::getImageType());
+            $manager->persist($mediaImage);
         }
-
         $manager->flush();
+
     }
 }

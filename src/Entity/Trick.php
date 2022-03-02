@@ -43,7 +43,7 @@ class Trick
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="tricks")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $users;
+    private $user;
 
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="trick", orphanRemoval=true)
@@ -54,7 +54,7 @@ class Trick
      * @ORM\ManyToOne(targetEntity=Group::class, inversedBy="tricks")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $grp;
+    private $group;
 
     /**
      * @ORM\OneToMany(targetEntity=Media::class, mappedBy="trick", orphanRemoval=true)
@@ -120,14 +120,14 @@ class Trick
         return $this;
     }
 
-    public function getUsers(): ?User
+    public function getUser(): ?User
     {
-        return $this->users;
+        return $this->user;
     }
 
-    public function setUsers(?User $users): self
+    public function setUser(?User $user): self
     {
-        $this->users = $users;
+        $this->user = $user;
 
         return $this;
     }
@@ -162,14 +162,14 @@ class Trick
         return $this;
     }
 
-    public function getGrp(): ?Group
+    public function getGroup(): ?Group
     {
-        return $this->grp;
+        return $this->group;
     }
 
-    public function setGrp(?Group $grp): self
+    public function setGroup(?Group $group): self
     {
-        $this->grp = $grp;
+        $this->group = $group;
 
         return $this;
     }

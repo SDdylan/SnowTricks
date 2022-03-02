@@ -10,6 +10,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Media
 {
+    CONST IMAGE_TYPE = 'image';
+    CONST VIDEO_TYPE = 'video';
+
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -32,6 +36,16 @@ class Media
      * @ORM\JoinColumn(nullable=false)
      */
     private $trick;
+
+    public static function getImageType(): string
+    {
+        return self::IMAGE_TYPE;
+    }
+
+    public static function getVideoType(): string
+    {
+        return self::VIDEO_TYPE;
+    }
 
     public function getId(): ?int
     {
