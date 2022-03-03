@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c3ba63c6-0fa3-406e-b33b-f3f5aa003f2b" name="Changes" comment="Added homepage controller.&#10;Added bootstrap theme and twig template.&#10;Begin homepage layout">
-      <change afterPath="$PROJECT_DIR$/public/img/img1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/img2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/img3.jpeg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/FrontController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FrontController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/front/home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front/home.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -143,6 +135,9 @@
       <path value="$PROJECT_DIR$/vendor/psr/event-dispatcher" />
       <path value="$PROJECT_DIR$/vendor/psr/container" />
       <path value="$PROJECT_DIR$/vendor/psr/cache" />
+      <path value="$PROJECT_DIR$/vendor/fakerphp/faker" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-fixtures-bundle" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/data-fixtures" />
     </include_path>
   </component>
   <component name="ProjectId" id="25bWjNBZJTZFWGJu5q2bbdhIBxn" />
@@ -186,6 +181,7 @@
       <workItem from="1646043648746" duration="11848000" />
       <workItem from="1646138751223" duration="8018000" />
       <workItem from="1646216812896" duration="5460000" />
+      <workItem from="1646297652240" duration="1283000" />
     </task>
     <task id="LOCAL-00001" summary="Added homepage controller.&#10;Added bootstrap theme and twig template.&#10;Begin homepage layout">
       <created>1646045164113</created>
