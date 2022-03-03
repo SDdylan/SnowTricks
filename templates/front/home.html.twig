@@ -14,7 +14,7 @@
         </div>
         <div class="d-flex align-items-end flex-column">
             <div class="mt-auto p-2">
-                <i class="fas fa-arrow-down fa-3x" style="color: white"></i>
+                <a href="#tricks"><i class="fas fa-arrow-down fa-3x" style="color: white"></i></a>
             </div>
         </div>
     </header>
@@ -22,11 +22,11 @@
 
 {% block body %}
     <!-- Content section-->
-    <section class="py-5">
+    <section id="tricks" class="py-5">
         <div class="my-5 container-fluid">
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5 justify-content-center text-center align-items-center rowtricks">
-                {% for j in 1..15 %}
-                <div class="trickshome col d-flex justify-content-center ">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5 justify-content-center text-center align-items-center ">
+                {% for i in 1..15 %}
+                <div class="tricks-home col d-flex justify-content-center ">
                     <div class="card" style="width: 22rem; text-align: left">
                         <img class="card-img-top" src="https://dummyimage.com/150x100/6c757d/dee2e6.jpg" alt="Card image cap">
                         <div class="card-body row">
@@ -37,6 +37,37 @@
                     </div>
                 </div>
                 {% endfor %}
+            </div>
+            <div id="hidden-tricks" style="display: none">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5 justify-content-center text-center align-items-center ">
+                    <!-- Tricks cachés -->
+                    {% for j in 15..29 %}
+                    <div class="tricks-home col d-flex justify-content-center">
+                        <div class="card" style="width: 22rem; text-align: left">
+                            <img class="card-img-top" src="https://dummyimage.com/150x100/6c757d/dee2e6.jpg" alt="Card image cap">
+                            <div class="card-body row">
+                                <a class="col-8" href="/">Card title</a>
+                                <a class="col-2" href="/"><i color="black" class="fas fa-pen"></i></a>
+                                <a class="col-2" href="/"><i color="red" class="fa fa-times" ></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- Button display -->
+            <div class="text-center">
+                <button id="btn-display" type="button" class="btn btn-primary btn-lg align-items-center" onclick="displayTricks()"><i class="fa fa-spinner"></i> Charger plus</button>
+            </div>
+            <!-- Icon link upper in the page -->
+            <div id="arrow-up"  style="display: none">
+                <div class="d-flex align-items-end flex-column">
+                    <div class="mt-auto p-2">
+                        <a href="#tricks">
+                            <i class="fas fa-arrow-up fa-3x" style="color: black"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
