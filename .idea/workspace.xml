@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c3ba63c6-0fa3-406e-b33b-f3f5aa003f2b" name="Changes" comment="Added homepage controller.&#10;Added bootstrap theme and twig template.&#10;Begin homepage layout">
+    <list default="true" id="c3ba63c6-0fa3-406e-b33b-f3f5aa003f2b" name="Changes" comment="Added fixtures for all classes,&#10;Added password-hash to User fixture,&#10;User class now implements UserInterface&#10;Configured password-hash in services.yaml,&#10;updated php version from 7.2.5 to 7.4.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/front/home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front/home.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
