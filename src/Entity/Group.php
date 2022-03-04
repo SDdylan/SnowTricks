@@ -31,7 +31,7 @@ class Group
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity=Trick::class, mappedBy="grp")
+     * @ORM\OneToMany(targetEntity=Trick::class, mappedBy="group")
      */
     private $tricks;
 
@@ -81,7 +81,7 @@ class Group
     {
         if (!$this->tricks->contains($trick)) {
             $this->tricks[] = $trick;
-            $trick->setGrp($this);
+            $trick->setGroup($this);
         }
 
         return $this;
@@ -91,8 +91,8 @@ class Group
     {
         if ($this->tricks->removeElement($trick)) {
             // set the owning side to null (unless already changed)
-            if ($trick->getGrp() === $this) {
-                $trick->setGrp(null);
+            if ($trick->getGroup() === $this) {
+                $trick->setGroup(null);
             }
         }
 
