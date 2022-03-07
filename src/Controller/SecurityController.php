@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationType;
-use Doctrine\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,14 +25,15 @@ class SecurityController extends AbstractController
     /**
      * @Route("/inscription", name="security_registration")
      */
-    public function registration(Request $request, ObjectManager $manager) {
+    public function registration(Request $request, EntityManagerInterface $manager) {
         $user = new User();
 
-        $form = $this->createForm(RegistrationType::class);
+        $form = $this->createForm(RegistrationType::class, $user);
 
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
+            $user->setRoles(['ROLE_USER']);
             $manager->persist($user);
             $manager->flush();
         }
