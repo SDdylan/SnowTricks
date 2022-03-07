@@ -4,13 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="22fe1940-90e4-42c0-aef2-a135011176f3" name="Changes" comment="Added fixtures for all classes,&#10;Added password-hash to User fixture,&#10;User class now implements UserInterface&#10;Configured password-hash in services.yaml,&#10;updated php version from 7.2.5 to 7.4." />
+    <list default="true" id="db25c59c-cf7b-4275-9f31-d6417ebc35be" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/templates/security/registration.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -20,6 +25,9 @@
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-fixtures-bundle" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/data-fixtures" />
+      <path value="$PROJECT_DIR$/vendor/fakerphp/faker" />
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/type-resolver" />
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock" />
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-common" />
@@ -124,12 +132,9 @@
       <path value="$PROJECT_DIR$/vendor/psr/event-dispatcher" />
       <path value="$PROJECT_DIR$/vendor/psr/container" />
       <path value="$PROJECT_DIR$/vendor/psr/cache" />
-      <path value="$PROJECT_DIR$/vendor/fakerphp/faker" />
-      <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-fixtures-bundle" />
-      <path value="$PROJECT_DIR$/vendor/doctrine/data-fixtures" />
     </include_path>
   </component>
-  <component name="ProjectId" id="25SiVvpAPYJ3v8dhUHgtXOaThom" />
+  <component name="ProjectId" id="263wkI2lTuzpVBoDxrhvBKA0Ucz" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -143,37 +148,18 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="22fe1940-90e4-42c0-aef2-a135011176f3" name="Changes" comment="" />
-      <created>1645526917387</created>
+      <changelist id="db25c59c-cf7b-4275-9f31-d6417ebc35be" name="Changes" comment="" />
+      <created>1646665721151</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1645526917387</updated>
-      <workItem from="1645526919868" duration="779000" />
-      <workItem from="1645625324601" duration="11751000" />
-      <workItem from="1645698716157" duration="5711000" />
-      <workItem from="1645794436313" duration="803000" />
+      <updated>1646665721151</updated>
+      <workItem from="1646665724505" duration="2046000" />
     </task>
-    <task id="LOCAL-00001" summary="Added entity: User, Trick, Comment, Group and Media">
-      <created>1645632825362</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1645632825362</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Added fixtures for all classes,&#10;Added password-hash to User fixture,&#10;User class now implements UserInterface&#10;Configured password-hash in services.yaml,&#10;updated php version from 7.2.5 to 7.4.">
-      <created>1645708025271</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1645708025271</updated>
-    </task>
-    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -189,11 +175,5 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added entity: User, Trick, Comment, Group and Media" />
-    <MESSAGE value="Added fixtures for all classes,&#10;Added password-hash to User fixture,&#10;User class now implements UserInterface&#10;Configured password-hash in services.yaml,&#10;updated php version from 7.2.5 to 7.4." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added fixtures for all classes,&#10;Added password-hash to User fixture,&#10;User class now implements UserInterface&#10;Configured password-hash in services.yaml,&#10;updated php version from 7.2.5 to 7.4." />
   </component>
 </project>
