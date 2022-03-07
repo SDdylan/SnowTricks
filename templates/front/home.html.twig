@@ -21,40 +21,45 @@
 {% endblock %}
 
 {% block body %}
+    {# la valeur de i correspond à la position du trick dans le Array $tricks #}
+    {%  set i = 0 %}
     <!-- Content section-->
     <section id="tricks" class="py-5">
         <div class="my-5 container-fluid">
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5 justify-content-center text-center align-items-center ">
-                {% for i in 1..15 %}
-                <div class="tricks-home col d-flex justify-content-center ">
-                    <div class="card" style="width: 22rem; text-align: left">
-                        <img class="card-img-top" src="https://dummyimage.com/150x100/6c757d/dee2e6.jpg" alt="Card image cap">
-                        <div class="card-body row">
-                            <a class="col-8" href="/">Card title</a>
-                            <a class="col-2" href="/"><i color="black" class="fas fa-pen"></i></a>
-                            <a class="col-2" href="/"><i color="red" class="fa fa-times" ></i></a>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-            <div id="hidden-tricks" style="display: none">
+            {% if tricksNumber > 15 %}
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5 justify-content-center text-center align-items-center ">
-                    <!-- Tricks cachés -->
-                    {% for j in 15..29 %}
-                    <div class="tricks-home col d-flex justify-content-center">
-                        <div class="card" style="width: 22rem; text-align: left">
-                            <img class="card-img-top" src="https://dummyimage.com/150x100/6c757d/dee2e6.jpg" alt="Card image cap">
+                    {% for trick in tricks|slice(0,15) %}
+                    <div class="tricks-home col d-flex justify-content-center ">
+                        <div class="card card-home" style="">
+                            <img class="card-img-top" src="{{ medias[i].url }}" alt="Card image cap"> {# trick.media[1].url -> pas propre car on doit être sur qu'il s'agit d'une image #}
                             <div class="card-body row">
-                                <a class="col-8" href="/">Card title</a>
+                                <a class="col-8" href="/">{{ trick.title }}</a>
                                 <a class="col-2" href="/"><i color="black" class="fas fa-pen"></i></a>
                                 <a class="col-2" href="/"><i color="red" class="fa fa-times" ></i></a>
                             </div>
                         </div>
                     </div>
+                    {% set i = i + 1 %}
                     {% endfor %}
                 </div>
-            </div>
+                <div id="hidden-tricks" style="display: none">
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5 justify-content-center text-center align-items-center ">
+                        <!-- Tricks cachés -->
+                        {% for tricks in tricks|slice(15,tricksNumber) %}
+                        <div class="tricks-home col d-flex justify-content-center">
+                            <div class="card" style="width: 22rem; text-align: left">
+                                <img class="card-img-top" src="{{ medias[i].url }}" alt="Card image cap">
+                                <div class="card-body row">
+                                    <a class="col-8" href="/">{{ tricks.title }}</a>
+                                    <a class="col-2" href="/"><i color="black" class="fas fa-pen"></i></a>
+                                    <a class="col-2" href="/"><i color="red" class="fa fa-times" ></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        {% set i = i + 1 %}
+                        {% endfor %}
+                    </div>
+                </div>
             <!-- Button display -->
             <div class="text-center">
                 <button id="btn-display" type="button" class="btn btn-primary btn-lg align-items-center" onclick="displayTricks()"><i class="fa fa-spinner"></i> Charger plus</button>
@@ -69,6 +74,24 @@
                     </div>
                 </div>
             </div>
+            {% else %}
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5 justify-content-center text-center align-items-center ">
+                    {% for trick in tricksNumber %}
+                        <div class="tricks-home col d-flex justify-content-center ">
+                            <div class="card" style="width: 22rem; text-align: left">
+                                <img class="card-img-top" src="{{ medias[i].url }}" alt="Card image cap">
+                                <div class="card-body row">
+                                    <a class="col-8" href="/">{{ trick.title }}</a>
+                                    <a class="col-2" href="/"><i color="black" class="fas fa-pen"></i></a>
+                                    <a class="col-2" href="/"><i color="red" class="fa fa-times" ></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        {% set i = i + 1 %}
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
     </section>
+
 {% endblock %}

@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c3ba63c6-0fa3-406e-b33b-f3f5aa003f2b" name="Changes" comment="Added fixtures for all classes,&#10;Added password-hash to User fixture,&#10;User class now implements UserInterface&#10;Configured password-hash in services.yaml,&#10;updated php version from 7.2.5 to 7.4.">
+    <list default="true" id="c3ba63c6-0fa3-406e-b33b-f3f5aa003f2b" name="Changes" comment="Correction of setter &amp; getter in Group entity">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/FrontController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FrontController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/front/home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front/home.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,6 +184,8 @@
       <workItem from="1646138751223" duration="8018000" />
       <workItem from="1646216812896" duration="5460000" />
       <workItem from="1646297652240" duration="1283000" />
+      <workItem from="1646426252661" duration="605000" />
+      <workItem from="1646646582459" duration="13448000" />
     </task>
     <task id="LOCAL-00001" summary="Added homepage controller.&#10;Added bootstrap theme and twig template.&#10;Begin homepage layout">
       <created>1646045164113</created>
@@ -189,7 +194,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646045164113</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Correction of setter &amp; getter in Group entity">
+      <created>1646413251496</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1646413251496</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -209,6 +221,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added homepage controller.&#10;Added bootstrap theme and twig template.&#10;Begin homepage layout" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added homepage controller.&#10;Added bootstrap theme and twig template.&#10;Begin homepage layout" />
+    <MESSAGE value="modified workspace.xml" />
+    <MESSAGE value="Correction of setter &amp; getter in Group entity" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correction of setter &amp; getter in Group entity" />
   </component>
 </project>
