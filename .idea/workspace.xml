@@ -4,16 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db25c59c-cf7b-4275-9f31-d6417ebc35be" name="Changes" comment="Added assertions on User entity.&#10;Corrected registration.html.twig and RegistrationType.php.&#10;setting role user automaticaly on inscription">
+    <list default="true" id="32e181d1-283b-4f11-afd3-d1ef64e5eaff" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/security/registration.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/registration.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -132,7 +133,7 @@
       <path value="$PROJECT_DIR$/vendor/psr/cache" />
     </include_path>
   </component>
-  <component name="ProjectId" id="263wkI2lTuzpVBoDxrhvBKA0Ucz" />
+  <component name="ProjectId" id="266AFDPwsByaXKlvUMNTA1YXgEA" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -151,49 +152,16 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="db25c59c-cf7b-4275-9f31-d6417ebc35be" name="Changes" comment="" />
-      <created>1646665721151</created>
+      <changelist id="32e181d1-283b-4f11-afd3-d1ef64e5eaff" name="Changes" comment="" />
+      <created>1646733558304</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1646665721151</updated>
-      <workItem from="1646665724505" duration="6332000" />
-      <workItem from="1646732942442" duration="243000" />
+      <updated>1646733558304</updated>
+      <workItem from="1646733560184" duration="4029000" />
     </task>
-    <task id="LOCAL-00001" summary="Added confirm_password parameter in User class,&#10;Added SecurityController for log-in &amp; sign-in,&#10;added registration.html.twig.&#10;Added RegistrationType Form.">
-      <created>1646669881362</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1646669881362</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Added assertions on User entity.&#10;Corrected registration.html.twig and RegistrationType.php.&#10;setting role user automaticaly on inscription">
-      <created>1646676655019</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1646676655019</updated>
-    </task>
-    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added confirm_password parameter in User class,&#10;Added SecurityController for log-in &amp; sign-in,&#10;added registration.html.twig.&#10;Added RegistrationType Form." />
-    <MESSAGE value="Added assertions on User entity.&#10;Corrected registration.html.twig and RegistrationType.php.&#10;setting role user automaticaly on inscription" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added assertions on User entity.&#10;Corrected registration.html.twig and RegistrationType.php.&#10;setting role user automaticaly on inscription" />
   </component>
 </project>
