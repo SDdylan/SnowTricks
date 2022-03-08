@@ -36,6 +36,7 @@ class SecurityController extends AbstractController
             $user->setRoles(['ROLE_USER']);
             $manager->persist($user);
             $manager->flush();
+            $this->redirect("/");
         }
 
         return $this->render('security/registration.html.twig', [

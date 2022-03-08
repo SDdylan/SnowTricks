@@ -4,19 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db25c59c-cf7b-4275-9f31-d6417ebc35be" name="Changes" comment="Added confirm_password parameter in User class,&#10;Added SecurityController for log-in &amp; sign-in,&#10;added registration.html.twig.&#10;Added RegistrationType Form.">
+    <list default="true" id="db25c59c-cf7b-4275-9f31-d6417ebc35be" name="Changes" comment="Added assertions on User entity.&#10;Corrected registration.html.twig and RegistrationType.php.&#10;setting role user automaticaly on inscription">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/RegistrationType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/RegistrationType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/security/registration.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/registration.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -159,7 +156,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1646665721151</updated>
-      <workItem from="1646665724505" duration="5614000" />
+      <workItem from="1646665724505" duration="6332000" />
+      <workItem from="1646732942442" duration="243000" />
     </task>
     <task id="LOCAL-00001" summary="Added confirm_password parameter in User class,&#10;Added SecurityController for log-in &amp; sign-in,&#10;added registration.html.twig.&#10;Added RegistrationType Form.">
       <created>1646669881362</created>
@@ -168,7 +166,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646669881362</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added assertions on User entity.&#10;Corrected registration.html.twig and RegistrationType.php.&#10;setting role user automaticaly on inscription">
+      <created>1646676655019</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1646676655019</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -184,9 +189,11 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added confirm_password parameter in User class,&#10;Added SecurityController for log-in &amp; sign-in,&#10;added registration.html.twig.&#10;Added RegistrationType Form." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added confirm_password parameter in User class,&#10;Added SecurityController for log-in &amp; sign-in,&#10;added registration.html.twig.&#10;Added RegistrationType Form." />
+    <MESSAGE value="Added assertions on User entity.&#10;Corrected registration.html.twig and RegistrationType.php.&#10;setting role user automaticaly on inscription" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added assertions on User entity.&#10;Corrected registration.html.twig and RegistrationType.php.&#10;setting role user automaticaly on inscription" />
   </component>
 </project>
