@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32e181d1-283b-4f11-afd3-d1ef64e5eaff" name="Changes" comment="">
+    <list default="true" id="f37675e3-75a0-4cb0-8d94-edaf962b5304" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/security/registration.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/registration.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -133,7 +134,7 @@
       <path value="$PROJECT_DIR$/vendor/psr/cache" />
     </include_path>
   </component>
-  <component name="ProjectId" id="266AFDPwsByaXKlvUMNTA1YXgEA" />
+  <component name="ProjectId" id="269NQH5kIWeXioJ2voXzPtV934C" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -152,12 +153,12 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="32e181d1-283b-4f11-afd3-d1ef64e5eaff" name="Changes" comment="" />
-      <created>1646733558304</created>
+      <changelist id="f37675e3-75a0-4cb0-8d94-edaf962b5304" name="Changes" comment="" />
+      <created>1646831823926</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1646733558304</updated>
-      <workItem from="1646733560184" duration="4029000" />
+      <updated>1646831823926</updated>
+      <workItem from="1646831825239" duration="9714000" />
     </task>
     <servers />
   </component>
