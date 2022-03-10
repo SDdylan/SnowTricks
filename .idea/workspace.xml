@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="0598a209-56b0-42c2-9bcc-a17eeb1ccbec" name="Changes" comment="">
+    <list default="true" id="8f6ec938-693e-4313-b525-f258efc73f1f" name="Changes" comment="deleted .idea/php.xml and .idea/workspace.xml">
+      <change afterPath="$PROJECT_DIR$/src/Security/LogInFormAuthenticator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/security/confirmation_email.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/RegistrationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RegistrationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/RegistrationFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/RegistrationFormType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/RegistrationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration/register.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/register.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/registration/confirmation_email.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/registration/register.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/register.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,15 +162,8 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Dylou\PhpstormProjects\Projet6\public" />
-      <recent name="C:\Users\Dylou\PhpstormProjects\Projet6\assets" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Dylou\PhpstormProjects\Projet6\public\js" />
-      <recent name="C:\Users\Dylou\PhpstormProjects\Projet6\public" />
-      <recent name="C:\Users\Dylou\PhpstormProjects\Projet6\assets\img" />
-      <recent name="C:\Users\Dylou\PhpstormProjects\Projet6\assets\styles" />
+      <recent name="C:\Users\Dylou\PhpstormProjects\Projet6\templates\security" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -173,12 +173,46 @@
       <created>1647251758777</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1647251758777</updated>
-      <workItem from="1647251760825" duration="851000" />
+      <updated>1646831823926</updated>
+      <workItem from="1646831825239" duration="9714000" />
+      <workItem from="1646916484414" duration="10616000" />
     </task>
+    <task id="LOCAL-00001" summary="Added .env.example,&#10;Added new form to register with &quot;php bin/console make:registration&quot;&#10;Added isVerified on User Entity to validate an account.&#10;Corrected addTrick &amp; removeTrick in User Entity.">
+      <created>1646921053082</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1646921053082</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Deleted old form,&#10;@TODO : addFlash() in RegistrationController.php&#10;@TODO : Changes the routes to redirect after registration.">
+      <created>1646923836129</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1646923836129</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added .env.example,&#10;Added new form to register with &quot;php bin/console make:registration&quot;&#10;Added isVerified on User Entity to validate an account." />
+    <MESSAGE value="Added .env.example,&#10;Added new form to register with &quot;php bin/console make:registration&quot;&#10;Added isVerified on User Entity to validate an account.&#10;Corrected addTrick &amp; removeTrick in User Entity." />
+    <MESSAGE value="Deleted old form,&#10;@TODO : addFlash() in RegistrationController.php&#10;@TODO : Changes the routes to redirect after registration." />
+    <option name="LAST_COMMIT_MESSAGE" value="Deleted old form,&#10;@TODO : addFlash() in RegistrationController.php&#10;@TODO : Changes the routes to redirect after registration." />
   </component>
 </project>
