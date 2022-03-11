@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f37675e3-75a0-4cb0-8d94-edaf962b5304" name="Changes" comment="Added Login page &amp; function to the SecurityController.php,&#10;Translation for the mail and login page,&#10;Correction of the CSS on login and register page.">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+    <list default="true" id="f37675e3-75a0-4cb0-8d94-edaf962b5304" name="Changes" comment="Installed reset-password-bundle library.&#10;Added ResetPasswordController, entity, repository, forms and views with &quot;make:reset-password&quot;&#10;Added migration for the request password entity.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/reset_password/check_email.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reset_password/check_email.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/reset_password/email.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reset_password/email.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/reset_password/request.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reset_password/request.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/reset_password/reset.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reset_password/reset.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,7 +163,7 @@
       <updated>1646831823926</updated>
       <workItem from="1646831825239" duration="9714000" />
       <workItem from="1646916484414" duration="5291000" />
-      <workItem from="1646994636444" duration="685000" />
+      <workItem from="1646994636444" duration="6414000" />
     </task>
     <task id="LOCAL-00001" summary="Added .env.example,&#10;Added new form to register with &quot;php bin/console make:registration&quot;&#10;Added isVerified on User Entity to validate an account.&#10;Corrected addTrick &amp; removeTrick in User Entity.">
       <created>1646921053082</created>
@@ -173,7 +172,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646921053082</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Installed reset-password-bundle library.&#10;Added ResetPasswordController, entity, repository, forms and views with &quot;make:reset-password&quot;&#10;Added migration for the request password entity.">
+      <created>1646996630898</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1646996630898</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -194,6 +200,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added .env.example,&#10;Added new form to register with &quot;php bin/console make:registration&quot;&#10;Added isVerified on User Entity to validate an account." />
     <MESSAGE value="Added .env.example,&#10;Added new form to register with &quot;php bin/console make:registration&quot;&#10;Added isVerified on User Entity to validate an account.&#10;Corrected addTrick &amp; removeTrick in User Entity." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added .env.example,&#10;Added new form to register with &quot;php bin/console make:registration&quot;&#10;Added isVerified on User Entity to validate an account.&#10;Corrected addTrick &amp; removeTrick in User Entity." />
+    <MESSAGE value="Installed reset-password-bundle library.&#10;Added ResetPasswordController, entity, repository, forms and views with &quot;make:reset-password&quot;&#10;Added migration for the request password entity." />
+    <option name="LAST_COMMIT_MESSAGE" value="Installed reset-password-bundle library.&#10;Added ResetPasswordController, entity, repository, forms and views with &quot;make:reset-password&quot;&#10;Added migration for the request password entity." />
   </component>
 </project>
