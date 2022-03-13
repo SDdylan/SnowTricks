@@ -12,9 +12,9 @@
 //import '../../assets/bootstrap.js';
 
 function displayTricks() {
-    var tricks = document.getElementById('hidden-tricks');
-    var arrow = document.getElementById('arrow-up');
-    var btn = document.getElementById('btn-display');
+    const tricks = document.getElementById('hidden-tricks');
+    const arrow = document.getElementById('arrow-up');
+    const btn = document.getElementById('btn-display');
     if (tricks.style.display === 'none' && arrow.style.display === 'none') {
         tricks.style.display = 'block';
         arrow.style.display = 'block';
