@@ -57,7 +57,7 @@ class Trick
     private $group;
 
     /**
-     * @ORM\OneToMany(targetEntity=Media::class, mappedBy="trick", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Media::class, mappedBy="trick", orphanRemoval=true, fetch="EAGER")
      */
     private $media;
 
