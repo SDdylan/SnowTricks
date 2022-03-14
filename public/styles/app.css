@@ -11301,4 +11301,15 @@ textarea.form-control-lg {
     background-color: #6c757d;
     background-size: cover;
     background-attachment: scroll;*/
+    background-image: url('../img/img1.jpg');
+    background-size: cover;
+
+}
+
+
+@media (min-width: 800px) {
+    .rowtricks {
+        margin-bottom: 50px;
+        margin-top: 50px;
+    }
 }

@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+    <!-- Header - set the background image for the header in the line below  assets/img/img1.jpg -->
+    <header class="py-1 bg-image-full d-flex">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7" style="margin-top: 15em">
+                    <div class="text-center my-5">
+                        <div class="p-2"><h1 class="text-white fw-bolder">Bienvenue sur Snow Tricks</h1></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex align-items-end flex-column">
+            <div class="mt-auto p-2">
+                <a href="#tricks"><i class="fas fa-arrow-down fa-3x" style="color: white"></i></a>
+            </div>
+        </div>
+    </header>
+{% endblock %}
+
+{% block body %}
+    {# la valeur de i correspond à la position du trick dans le Array $tricks #}
+    <!-- Content section-->
+    <section id="tricks" class="py-5">
+        <div class="my-5 container-fluid">
+            {% if tricksNumber > 15 %}
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5 justify-content-center text-center align-items-center ">
+                    {% for trick in tricks|slice(0,15) %}
+                    <div class="tricks-home col d-flex justify-content-center ">
+                        <div class="card card-home">
+{#                            {% set break = false %}#}
+{#                            {% for media in trick.media %}#}
+{#                                {% if not break %}#}
+{#                                    {% if media.type == "image" %}#}
+{#                                        <img class="card-img-top" src="{{ media.url }}" alt="Card image cap"> #}{# trick.media[1].url -> pas propre car on doit être sur qu'il s'agit d'une image #}
+{#                                        {% set break = true %}#}
+{#                                    {% endif %}#}
+{#                                {% endif %}#}
+{#                            {% endfor %}#}
+                            {% set image = trick.media|filter(v => v.type == "image")|first %}
+                            {% if image is defined %}
+                                <img class="card-img-top" src="{{ image.url }}" alt="Card image cap"/>
+                            {% endif %}
+                            <div class="card-body row">
+                                <a class="col-8" href="/">{{ trick.title }}</a>
+                                <a class="col-2 edit" href="/"><i class="fas fa-pen"></i></a>
+                                <a class="col-2 cross" href="/"><i class="fa fa-times" ></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div id="hidden-tricks" style="display: none">
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5 justify-content-center text-center align-items-center ">
+                        <!-- Tricks cachés -->
+                        {% for trick in tricks|slice(15,tricksNumber) %}
+                        <div class="tricks-home col d-flex justify-content-center">
+                            <div class="card card-home">
+                                {% set image = trick.media|filter(v => v.type == "image")|first %}
+                                {% if image is defined %}
+                                    <img class="card-img-top" src="{{ image.url }}" alt="Card image cap"/>
+                                {% endif %}
+                                <div class="card-body row">
+                                    <a class="col-8" href="/">{{ trick.title }}</a>
+                                    <a class="col-2 edit" href="/"><i class="fas fa-pen"></i></a>
+                                    <a class="col-2 cross" href="/"><i class="fa fa-times" ></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            <!-- Button display -->
+            <div class="text-center">
+                <button id="btn-display" type="button" class="btn btn-primary btn-lg align-items-center" onclick="displayTricks()"><i class="fa fa-spinner"></i> Charger plus</button>
+            </div>
+            <!-- Icon link upper in the page -->
+            <div id="arrow-up"  style="display: none">
+                <div class="d-flex align-items-end flex-column">
+                    <div class="mt-auto p-2">
+                        <a href="#tricks">
+                            <i class="fas fa-arrow-up fa-3x" style="color: black"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5 justify-content-center text-center align-items-center ">
+                    {% for trick in tricksNumber %}
+                        <div class="tricks-home col d-flex justify-content-center ">
+                            <div class="card" style="width: 22rem; text-align: left">
+                                {% set image = trick.media|filter(v => v.type == "image")|first %}
+                                {% if image is defined %}
+                                    <img class="card-img-top" src="{{ image.url }}" alt="Card image cap"/>
+                                {% endif %}
+                                <div class="card-body row">
+                                    <a class="col-8" href="/">{{ trick.title }}</a>
+                                    <a class="col-2 edit" href="/"><i class="fas fa-pen"></i></a>
+                                    <a class="col-2 cross" href="/"><i class="fa fa-times" ></i></a>>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </section>
+
+{% endblock %}
