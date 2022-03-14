@@ -6,15 +6,15 @@
     <div id="login">
         <section>
             <h1 id="login-title">Connexion</h1>
-            <div class="container form-control form-login" style="background: none; height: max-content">
+            <div class="container form-control form-login">
                 <form method="post">
                     {% if error %}
                         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                     {% endif %}
 
                     {% if app.user %}
-                        <div class="mb-3">
-                            Vous êtes connecté en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
+                        <div class="mb-3 login-connected">
+                            Vous êtes connecté en tant que <strong>{{ app.user.username }}</strong>, <a href="{{ path('app_logout') }}">Déconnexion</a>
                         </div>
                     {% endif %}
 

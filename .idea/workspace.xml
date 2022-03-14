@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f6ec938-693e-4313-b525-f258efc73f1f" name="Changes" comment="Corrected redirection to home page in SecurityController.php">
+    <list default="true" id="8f6ec938-693e-4313-b525-f258efc73f1f" name="Changes" comment="Corrected target logout in security.yaml">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,7 +160,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647255400772</updated>
-      <workItem from="1647255402748" duration="4692000" />
+      <workItem from="1647255402748" duration="5421000" />
     </task>
     <task id="LOCAL-00001" summary="Corrected redirection to home page in SecurityController.php">
       <created>1647266393861</created>
@@ -169,7 +169,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647266393861</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Corrected target logout in security.yaml">
+      <created>1647266948024</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1647266948024</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -188,6 +195,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Corrected redirection to home page in SecurityController.php" />
-    <option name="LAST_COMMIT_MESSAGE" value="Corrected redirection to home page in SecurityController.php" />
+    <MESSAGE value="Corrected target logout in security.yaml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Corrected target logout in security.yaml" />
   </component>
 </project>
