@@ -18,7 +18,6 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('username', null, array('label' => false))
-            //->add('roles')
             ->add('password', PasswordType::class, array('label' => false))
             ->add('confirm_password', PasswordType::class, array('label' => false))
             ->add('email', null, array('label' => false))
