@@ -59,7 +59,7 @@ class SecurityController extends AbstractController
             );
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('/');
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('security/register.html.twig', [
@@ -90,13 +90,13 @@ class SecurityController extends AbstractController
         } catch (VerifyEmailExceptionInterface $exception) {
             $this->addFlash('verify_email_error', $translator->trans($exception->getReason(), [], 'VerifyEmailBundle'));
 
-            return $this->redirectToRoute('/');
+            return $this->redirectToRoute('home');
         }
 
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
         $this->addFlash('success', 'Votre adresse à été vérifiée.');
 
-        return $this->redirectToRoute('/');
+        return $this->redirectToRoute('home');
     }
 
     /**
