@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme commentForm 'bootstrap_5_layout.html.twig' %}
+
+{% block title %}{{ trick.title }}{% endblock %}
+
+{% block header %}
+    <!-- Header - set the background image for the header in the line below  assets/img/img1.jpg -->
+    {% set image = trick.media|filter(v => v.type == "image")|first %}
+    {% if image is defined %}
+        {% set bgImage = image.url %}
+    {% else %}
+        {% set bgImage = "../../build/img/img1.jpg" %}
+    {% endif %}
+    <header class="py-1 bg-image-full d-flex" style="background-image: url('{{ bgImage }}');">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7" style="margin-top: 15em">
+                    <div class="text-center my-5">
+                        <div class="p-2"><h1 class="text-white fw-bolder">{{ trick.title }}</h1></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+{% endblock %}
+
+{% block body %}
+    <article class="container">
+    {# Section des images #}
+
+    {# Section Texte #}
+        <section id="content-trick">
+            <div id="description-trick">
+                <p>{{ trick.description }}</p>
+            </div>
+            {# Affichage du groupe / date de création / date de modification #}
+            <div id="end-content-trick" class="row">
+                <div class="col">
+                    <p>Créé par :<br><strong>{{ trick.group.title }}</strong></p>
+                </div>
+                <div class="col">
+                    <p>Date de création :<br><strong>{{ trick.createdAt|date('d/m/Y') }}</strong></p>
+                </div>
+                {% if trick.modifiedAt %}
+                <div class="col">
+                    <p>Date de modification :<br><strong>{{ trick.modifiedAt|date('d/m/Y') }}</strong></p>
+                </div>
+                {% endif %}
+            </div>
+        </section>
+        <hr>
+    {# Section commentaires #}
+        <section id="comments-trick">
+            <div class="row">
+                <h2>Commentaires</h2>
+                {% if app.user %}
+                    {% for message in app.flashes('notice') %}
+                        <div class="flash-notice">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                <div class="col-8">
+                {{ form_start(commentForm) }}
+                {{ form_widget(commentForm) }}
+                </div>
+                <div id="btn-comment" class="col-2">
+                    <button type="submit" class="btn btn-primary btn-lg">Envoyer</button>
+                </div>
+                {{ form_end(commentForm) }}
+            {% else %}
+                <h3 class="h5"><small>Vous devez être connecté pour commenter.</small></h3>
+            {% endif %}
+            </div>
+            <hr>
+            <!-- Comments -->
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        {% for comment in trick.comments|filter(c => c.isVerified == 1) %}
+                            <!-- Post preview-->
+                            <div class="card container">
+                                <div class="row">
+                                    {# Emplacement de l'image de l'utilisateur #}
+                                    <div class="col-4">
+                                        <img src="{{ comment.user.imageUrl }}" class="rounded-circle col-4" style="width: 7em;"/>
+                                    </div>
+                                    {# Nom d'utilisateur pour le commentaire #}
+                                    <div style="margin-bottom: auto;margin-top: auto" class="col-8">
+                                        <h5><strong>{{ comment.user.username }}</strong></h5>
+                                        <small>Posté le : {{ comment.createdAt|date('d/m/Y') }} à {{ comment.createdAt|date('H:m') }}</small>
+                                        <p>{{ comment.content }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+    </article>
+{% endblock %}

@@ -25,6 +25,11 @@ class Trick
     private $title;
 
     /**
+     * @ORM\Column (type="string", length=255)
+     */
+    private $slug;
+
+    /**
      * @ORM\Column(type="text")
      */
     private $description;
@@ -94,6 +99,22 @@ class Trick
         $this->description = $description;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param mixed $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
     }
 
     public function getCreatedAt(): ?\DateTimeInterface
