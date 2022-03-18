@@ -22,14 +22,52 @@
                 </div>
             </div>
         </div>
+        {% if app.user %}
+        <div class="d-flex justify-content-end flex-column">
+            <div class="mb-auto p-2" style="background: white">
+                <a class="col-2 edit" href="/" style="margin-right: 1.5em"><i class="fas fa-pen fa-2x"></i></a>
+                <a class="col-2 cross" data-bs-toggle="modal" data-bs-target="#modalTrick"><i class="fa fa-times fa-2x" ></i></a>
+                {# Modal pour confirmer la supression du trick #}
+                <div class="modal fade" id="modalTrick" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalLabel">Modification d'Article</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Êtes-vous sur de vouloir supprimer le trick <strong>{{ trick.title }}</strong> ?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
+                                <a class="btn btn-primary" href="/trick/delete/{{ trick.id }}" role="button">Oui</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
     </header>
 {% endblock %}
 
 {% block body %}
     <article class="container">
-    {# Section des images #}
-
-    {# Section Texte #}
+        {# Section des images #}
+        <section class="row trick-medias">
+            {% for media in trick.media %}
+                <div class="col-sm-6 col-md-6 col-lg-4">
+                    <div class="trick-media-col">
+                        {% if media.type == 'image' %}
+                            <img class="trick-media" src="{{ media.url }}" alt="figure {{ trick.title }} - image {{ loop.index }}">
+                        {% else %}
+                            <iframe class="trick-media" height="250" src="{{ media.url }}" allowfullscreen></iframe>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </section>
+        {# Section Texte #}
         <section id="content-trick">
             <div id="description-trick">
                 <p>{{ trick.description }}</p>
@@ -79,7 +117,7 @@
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         {% for comment in trick.comments|filter(c => c.isVerified == 1) %}
                             <!-- Post preview-->
-                            <div class="card container">
+                            <div class="card container comment">
                                 <div class="row">
                                     {# Emplacement de l'image de l'utilisateur #}
                                     <div class="col-4">

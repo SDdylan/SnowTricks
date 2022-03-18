@@ -51,7 +51,7 @@ class UserFixtures extends Fixture
         //creation users
         $simpleUser = $this->buildUser('dylan.sardi@hotmail.fr', '123456789@u', [User::getSimpleUser()]);
         $manager->persist($simpleUser);
-        $adminUser = $this->buildUser('dylagia@gmail.com', '123456789@a', [User::getAdminUser()]);
+        $adminUser = $this->buildUser('dylagia@gmail.com', '123456789@a', [User::getAdminUser(),User::getSimpleUser()]);
         $manager->persist($adminUser);
 
         //creation des groupes

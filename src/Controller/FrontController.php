@@ -41,11 +41,11 @@ class FrontController extends AbstractController
     }
 
     /**
-     * @Route ("/trick/{slugTrick}", name="trickDetails")
+     * @Route ("/trick/{idTrick}-{slugTrick}", name="trick_details")
      */
-    public function showTrick(string $slugTrick, Request $request, EntityManagerInterface $entityManager)
+    public function showTrick(string $slugTrick, int $idTrick, Request $request, EntityManagerInterface $entityManager)
     {
-        $trick = $this->entityManager->getRepository(Trick::class)->findOneBy(['slug' => $slugTrick]);
+        $trick = $this->entityManager->getRepository(Trick::class)->findOneBy(['id' => $idTrick]);
         dump($trick);
 
         $comment = new Comment();
@@ -63,13 +63,12 @@ class FrontController extends AbstractController
 
             unset($comment);
 
-
             $this->addFlash(
                 'notice',
                 'Votre commentaire à été envoyé, il sera traité dans les plus brefs délais.'
             );
 
-            return $this->redirect('/trick/' . $slugTrick);
+            return $this->redirect('/trick/'. $idTrick . '-' . $slugTrick);
 
         }
         return $this->render('front/trick.html.twig', [
