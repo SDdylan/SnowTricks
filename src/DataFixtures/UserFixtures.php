@@ -7,6 +7,7 @@ use App\Entity\Group;
 use App\Entity\Media;
 use App\Entity\Trick;
 use App\Entity\User;
+use Cocur\Slugify\Slugify;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Faker\Factory;
 use Doctrine\Persistence\ObjectManager;
@@ -34,7 +35,8 @@ class UserFixtures extends Fixture
         $user->setUsername($faker->userName());
         $user->setImageUrl($faker->imageUrl(150, 150, 'animals', true));
         $user->setRoles($role);
-        $user->setPassword($password);
+        $user->encodePassword($password);
+        $user->setIsVerified(1);
 
         return $user;
     }
@@ -44,10 +46,12 @@ class UserFixtures extends Fixture
     {
         $faker = Factory::create('fr_FR');
 
+        $slugify = new Slugify();
+
         //creation users
         $simpleUser = $this->buildUser('dylan.sardi@hotmail.fr', '123456789@u', [User::getSimpleUser()]);
         $manager->persist($simpleUser);
-        $adminUser = $this->buildUser('dylagia@gmail.com', '123456789@a', [User::getAdminUser()]);
+        $adminUser = $this->buildUser('dylagia@gmail.com', '123456789@a', [User::getAdminUser(),User::getSimpleUser()]);
         $manager->persist($adminUser);
 
         //creation des groupes
@@ -72,11 +76,14 @@ class UserFixtures extends Fixture
             $group = ${"group".$randomGroup};
             $user = $randomUser === 1 ? $simpleUser : $adminUser;
 
-            $trick->setTitle($faker->sentence(4))
+            $title = $faker->sentence(4);
+
+            $trick->setTitle($title)
                 ->setDescription($faker->paragraph(4))
                 ->setCreatedAt($faker->dateTime())
                 ->setGroup($group)
-                ->setUser($user);
+                ->setUser($user)
+                ->setSlug($slugify->slugify($title));
 
             $manager->persist($trick);
 
