@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\TrickRepository;
+use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -223,5 +224,11 @@ class Trick
         }
 
         return $this;
+    }
+
+    public function slugify($title): void
+    {
+        $slugify = new Slugify();
+        $this->setSlug($slugify->slugify($title));
     }
 }
