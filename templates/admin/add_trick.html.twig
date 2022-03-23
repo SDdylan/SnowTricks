@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Création de Figure{% endblock %}
+
+{% form_theme trickForm 'bootstrap_5_layout.html.twig' %}
+
+{% block body %}
+    <div id="register">
+        <section>
+            <h1 id="register-title">Création de Figure</h1>
+            <div class="container form-control form-register" style="background: none; height: max-content">
+                {{ form_start(trickForm) }}
+                {{  form_row(trickForm.title, {'attr': {'label': "Titre"}}) }}
+                {{  form_row(trickForm.description, {'attr': {'label': "Description"}}) }}
+                {{ form_row(trickForm.group, {'attr': {'label': "Groupe"}}) }}
+                <h3>Media</h3>
+                <ul class="media" data-index="{{ trickForm.media|length > 0 ? trickForm.media|last.vars.name + 1 : 0 }}" data-prototype="{{ form_widget(trickForm.media.vars.prototype)|e('html_attr') }}" >
+                     {% for media in trickForm.media %}
+                         <li>{{ form_row(media) }}</li>
+                    {% endfor %}
+                </ul>
+                <button type="button" class="add_item_link btn btn-primary" data-collection-holder-class="media">Ajouter un media</button>
+
+                <div id="btn-register">
+                    <button type="submit" class="btn btn-success btn-lg">Créer</button>
+                </div>
+                {{ form_end(trickForm) }}
+            </div>
+        </section>
+    </div>
+{% endblock %}

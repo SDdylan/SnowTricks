@@ -2,24 +2,31 @@
 
 namespace App\Form;
 
-use App\Entity\Comment;
+use App\Entity\Media;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CommentType extends AbstractType
+class MediaFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('content', null, array('label' => false, 'required' => true))
+            ->add('url')
+            ->add('type', ChoiceType::class, array(
+                'choices' => array(
+                    Media::getVideoType() => 'video',
+                    Media::getImageType() => 'image'
+                )
+            ))
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Comment::class,
+            'data_class' => Media::class,
         ]);
     }
 }

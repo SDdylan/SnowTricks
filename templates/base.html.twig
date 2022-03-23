@@ -25,7 +25,7 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    {% if app.request.get('_route') == 'home' %}
+    {% if app.request.get('_route') == 'home' or app.request.get('_route') == 'trick_details' %}
         <body>
     {% else %}
         <body class="d-flex flex-column h-100">
@@ -43,6 +43,7 @@
                         <li class="nav-item"><a class="nav-link" href="/login">Connexion</a></li>
                         <li class="nav-item"><a class="nav-link" href="/register">Inscription</a></li>
                         {% if app.user %}
+                            <li class="nav-item"><a class="nav-link" href="/trick/new">Ajouter Figure</a></li>
                             <li class="nav-item"><a class="nav-link" href="/logout">Déconnexion</a></li>
                         {% endif %}
                     </ul>
