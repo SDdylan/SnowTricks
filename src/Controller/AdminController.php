@@ -76,19 +76,41 @@ class AdminController extends AbstractController
 
             $trick = $form->getData();
 
-            $trick->setCreatedAt(new DateTime());
-            $trick->setUser($this->getUser());
-            $trick->slugify($trick->getTitle());
+            //On s'assure qu'il y ait bien au moins une image et une vidéo
+            $videos = 0;
+            $images = 0;
+            foreach ($trick->getMedia() as $media) {
+                if ($media->getType() == 'video') {
+                    $videos++;
+                } else {
+                    $images++;
+                }
+                if($images > 0 && $videos > 0) {
+                    break;
+                }
+            }
 
-            $entityManager->persist($trick);
-            $entityManager->flush();
+            if ($images==0 || $videos==0) {
+                $this->addFlash(
+                    'warning',
+                    'Erreur : Vous devez ajouter au moins une image et une vidéo à la figure.'
+                );
+            } else {
 
-            $this->addFlash(
-                'success',
-                'La figure ' . $trick->getTitle() . ' à été ajoutée avec succès !'
-            );
+                $trick->setCreatedAt(new DateTime());
+                $trick->setUser($this->getUser());
+                $trick->slugify($trick->getTitle());
 
-            return $this->redirectToRoute('home');
+                $entityManager->persist($trick);
+                $entityManager->flush();
+
+                $this->addFlash(
+                    'success',
+                    'La figure ' . $trick->getTitle() . ' à été ajoutée avec succès !'
+                );
+
+                return $this->redirectToRoute('home');
+            }
         }
 
         return $this->render('admin/add_trick.html.twig', [

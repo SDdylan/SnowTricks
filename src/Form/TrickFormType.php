@@ -21,6 +21,7 @@ class TrickFormType extends AbstractType
             ->add('group', EntityType::class, [
                'class' => Group::class,
                'choice_label' => 'title',
+                'label' => 'Groupe'
             ])
             ->add('media', CollectionType::class, [
                 'entry_type' => MediaFormType::class,
@@ -28,6 +29,7 @@ class TrickFormType extends AbstractType
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
+                'label' => false
             ])
         ;
     }

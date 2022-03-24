@@ -4,13 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f6192bbf-6758-4e89-a8a2-18dc09b0a008" name="Changes" comment="deleted local env var in .env (now use a .env.local.php made with composer dump-env)&#10;updated css on the base template to have the footer always on the bottom of the screen, even on page without much content.&#10;updated all twig views for the password reset." />
+    <list default="true" id="f6192bbf-6758-4e89-a8a2-18dc09b0a008" name="Changes" comment="added Form for Media and Trick entities. (Media can be added directly on Trick form)&#10;Added addTrick() function in AdminController.php that redirect to add_trick route&#10;Added add_trick.html.twig View&#10;Added new function to add and remove Medias Form on Trick Form in app.js&#10;Deleted useless code in CommentType.php and SecurityController.php&#10;Modified display of flash messages in home.html.twig&#10;Added unicity constraint on title field of Trick.php&#10;&#10;Added link to add trick in base.html.twig and modified body class if on route trick_details">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/TrickFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/TrickFormType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/add_trick.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/add_trick.html.twig" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -129,6 +135,8 @@
       <path value="$PROJECT_DIR$/vendor/psr/container" />
       <path value="$PROJECT_DIR$/vendor/psr/cache" />
       <path value="$PROJECT_DIR$/vendor/symfonycasts/reset-password-bundle" />
+      <path value="$PROJECT_DIR$/vendor/cocur/slugify" />
+      <path value="$PROJECT_DIR$/vendor/twig/intl-extra" />
     </include_path>
   </component>
   <component name="ProjectId" id="26Nk32QiU5UgyA70yyRnaWQ2h9z" />
@@ -140,6 +148,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -158,6 +167,11 @@
       <workItem from="1647271234115" duration="1667000" />
       <workItem from="1647343958427" duration="3062000" />
       <workItem from="1647433549148" duration="6328000" />
+      <workItem from="1647854682286" duration="28342000" />
+      <workItem from="1647943088872" duration="5616000" />
+      <workItem from="1647966028095" duration="5478000" />
+      <workItem from="1648031548080" duration="7996000" />
+      <workItem from="1648046902143" duration="137000" />
     </task>
     <task id="LOCAL-00001" summary="deleted local env var in .env (now use a .env.local.php made with composer dump-env)&#10;updated css on the base template to have the footer always on the bottom of the screen, even on page without much content.&#10;updated all twig views for the password reset.">
       <created>1647446437858</created>
@@ -166,7 +180,21 @@
       <option name="project" value="LOCAL" />
       <updated>1647446437858</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Corrected link in href in homepage&#10;Corrected CSS&#10;Added slugify function to Trick entity&#10;Login now redirect to homepage">
+      <created>1647962002932</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1647962002933</updated>
+    </task>
+    <task id="LOCAL-00003" summary="added Form for Media and Trick entities. (Media can be added directly on Trick form)&#10;Added addTrick() function in AdminController.php that redirect to add_trick route&#10;Added add_trick.html.twig View&#10;Added new function to add and remove Medias Form on Trick Form in app.js&#10;Deleted useless code in CommentType.php and SecurityController.php&#10;Modified display of flash messages in home.html.twig&#10;Added unicity constraint on title field of Trick.php&#10;&#10;Added link to add trick in base.html.twig and modified body class if on route trick_details">
+      <created>1648042460497</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1648042460497</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -186,6 +214,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="deleted local env var in .env (now use a .env.local.php made with composer dump-env)&#10;updated css on the base template to have the footer always on the bottom of the screen, even on page without much content.&#10;updated all twig views for the password reset." />
-    <option name="LAST_COMMIT_MESSAGE" value="deleted local env var in .env (now use a .env.local.php made with composer dump-env)&#10;updated css on the base template to have the footer always on the bottom of the screen, even on page without much content.&#10;updated all twig views for the password reset." />
+    <MESSAGE value="Corrected link in href in homepage&#10;Corrected CSS&#10;Added slugify function to Trick entity&#10;Login now redirect to homepage" />
+    <MESSAGE value="added Form for Media and Trick entities. (Media can be added directly on Trick form)&#10;Added addTrick() function in AdminController.php that redirect to add_trick route&#10;Added add_trick.html.twig View&#10;Added new function to add and remove Medias Form on Trick Form in app.js&#10;Deleted useless code in CommentType.php and SecurityController.php&#10;Modified display of flash messages in home.html.twig&#10;Added unicity constraint on title field of Trick.php&#10;&#10;Added link to add trick in base.html.twig and modified body class if on route trick_details" />
+    <option name="LAST_COMMIT_MESSAGE" value="added Form for Media and Trick entities. (Media can be added directly on Trick form)&#10;Added addTrick() function in AdminController.php that redirect to add_trick route&#10;Added add_trick.html.twig View&#10;Added new function to add and remove Medias Form on Trick Form in app.js&#10;Deleted useless code in CommentType.php and SecurityController.php&#10;Modified display of flash messages in home.html.twig&#10;Added unicity constraint on title field of Trick.php&#10;&#10;Added link to add trick in base.html.twig and modified body class if on route trick_details" />
   </component>
 </project>
