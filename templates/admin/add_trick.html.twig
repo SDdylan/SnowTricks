@@ -1,0 +1,53 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Création de Figure{% endblock %}
+
+{% form_theme trickForm 'bootstrap_5_layout.html.twig' %}
+
+{% block body %}
+    <div id="formTrick">
+        <section>
+            <h1 id="form-title">Création de Figure</h1>
+            <div class="container form-control form-trick " style="background: none; height: max-content">
+                {{ form_start(trickForm) }}
+                {{  form_row(trickForm.title, {'attr': {'label': "Titre"}}) }}
+                {{  form_row(trickForm.description, {'attr': {'label': "Description"}}) }}
+                {{ form_row(trickForm.group, {'attr': {'label': "Groupe"}}) }}
+                <h3>Medias</h3>
+                <p><small>Veillez à ajouter au moins <strong>une</strong> image et <strong>une</strong> vidéo.</small></p>
+                {% for message in app.flashes('warning') %}
+                    <script>
+                        alert('{{ message }}');
+                    </script>
+{#                    <div class="modal fade" id="modalTrick" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true" data-show="true">#}
+{#                        <div class="modal-dialog">#}
+{#                            <div class="modal-content">#}
+{#                                <div class="modal-header">#}
+{#                                    <h5 class="modal-title" id="modalLabel">Erreur :</h5>#}
+{#                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>#}
+{#                                </div>#}
+{#                                <div class="modal-body">#}
+{#                                    <p>{{ message }}</p>#}
+{#                                </div>#}
+{#                                <div class="modal-footer">#}
+{#                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+                {% endfor %}
+                <ul class="media" data-index="{{ trickForm.media|length > 0 ? trickForm.media|last.vars.name + 1 : 0 }}" data-prototype="{{ form_widget(trickForm.media.vars.prototype)|e('html_attr') }}" >
+                     {% for media in trickForm.media %}
+                         <li >{{ form_row(media) }}</li>
+                    {% endfor %}
+                </ul>
+                <button type="button" class="add_item_link btn btn-primary" data-collection-holder-class="media">Ajouter un media</button>
+
+                <div id="btn-form">
+                    <button type="submit" class="btn btn-success btn-lg">Créer</button>
+                </div>
+                {{ form_end(trickForm) }}
+            </div>
+        </section>
+    </div>
+{% endblock %}

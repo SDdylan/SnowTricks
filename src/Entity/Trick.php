@@ -3,12 +3,18 @@
 namespace App\Entity;
 
 use App\Repository\TrickRepository;
+use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=TrickRepository::class)
+ * @UniqueEntity(
+ *  fields = {"title"},
+ *  message = "Ce titre est déjà utilisé."
+ * )
  */
 class Trick
 {
@@ -62,7 +68,7 @@ class Trick
     private $group;
 
     /**
-     * @ORM\OneToMany(targetEntity=Media::class, mappedBy="trick", orphanRemoval=true, fetch="EAGER")
+     * @ORM\OneToMany(targetEntity=Media::class, mappedBy="trick", orphanRemoval=true, fetch="EAGER", cascade={"persist"})
      */
     private $media;
 
@@ -223,5 +229,11 @@ class Trick
         }
 
         return $this;
+    }
+
+    public function slugify($title): void
+    {
+        $slugify = new Slugify();
+        $this->setSlug($slugify->slugify($title));
     }
 }

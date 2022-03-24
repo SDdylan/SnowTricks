@@ -17,7 +17,6 @@
                 <a href="#tricks"><i class="fas fa-arrow-down fa-3x" style="color: white"></i></a>
             </div>
         </div>
-
     </header>
 {% endblock %}
 
@@ -26,15 +25,6 @@
     <!-- Content section-->
     <section id="tricks" class="py-5">
         <div class="my-5 container-fluid">
-            {% for message in app.flashes('success') %}
-            <div class="row mb-5">
-                <div class="col">
-                    <div class="flash-notice">
-                        <h2 id="flash-delete-trick">{{ message }}</h2>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
             {% if tricksNumber > 15 %}
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5 justify-content-center text-center align-items-center ">
                     {% for trick in tricks|slice(0,15) %}
@@ -75,19 +65,37 @@
                     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5 justify-content-center text-center align-items-center ">
                         <!-- Tricks cachés -->
                         {% for trick in tricks|slice(15,tricksNumber) %}
-                        <div class="tricks-home col d-flex justify-content-center">
-                            <div class="card card-home">
-                                {% set image = trick.media|filter(v => v.type == "image")|first %}
-                                {% if image is defined %}
-                                    <img class="card-img-top" src="{{ image.url }}" alt="Card image cap"/>
-                                {% endif %}
-                                <div class="card-body row">
-                                    <a class="col-8" href="/trick/{{ trick.id }}-{{ trick.slug }}">{{ trick.title }}</a>
-                                    <a class="col-2 edit" href="/"><i class="fas fa-pen"></i></a>
-                                    <a class="col-2 cross" href="/"><i class="fa fa-times" ></i></a>
+                            <div class="tricks-home col d-flex justify-content-center">
+                                <div class="card card-home">
+                                    {% set image = trick.media|filter(v => v.type == "image")|first %}
+                                    {% if image is defined %}
+                                        <img class="card-img-top" src="{{ image.url }}" alt="Card image cap"/>
+                                    {% endif %}
+                                    <div class="card-body row">
+                                        <a class="col-8" href="/trick/{{ trick.id }}-{{ trick.slug }}">{{ trick.title }}</a>
+                                        <a class="col-2 edit" href="/"><i class="fas fa-pen"></i></a>
+                                        <a class="col-2 cross" data-bs-toggle="modal" data-bs-target="#modalTrick{{ trick.id }}"><i class="fa fa-times" ></i></a>
+                                        {# Modal pour confirmer la supression du trick #}
+                                        <div class="modal fade" id="modalTrick{{ trick.id }}" tabindex="-1" aria-labelledby="modalLabel{{ trick.id }}" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="modalLabel{{ trick.id }}">Modification d'Article</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Êtes-vous sur de vouloir supprimer le trick <strong>{{ trick.title }}</strong> ?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
+                                                        <a class="btn btn-primary" href="/trick/delete/{{ trick.id }}" role="button">Oui</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         {% endfor %}
                     </div>
                 </div>
@@ -108,7 +116,7 @@
             {% else %}
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5 justify-content-center text-center align-items-center ">
                     {% for trick in tricksNumber %}
-                        <div class="tricks-home col d-flex justify-content-center ">
+                        <div class="tricks-home col d-flex justify-content-center">
                             <div class="card card-home">
                                 {% set image = trick.media|filter(v => v.type == "image")|first %}
                                 {% if image is defined %}
@@ -117,7 +125,25 @@
                                 <div class="card-body row">
                                     <a class="col-8" href="/trick/{{ trick.id }}-{{ trick.slug }}">{{ trick.title }}</a>
                                     <a class="col-2 edit" href="/"><i class="fas fa-pen"></i></a>
-                                    <a class="col-2 cross" href="/"><i class="fa fa-times" ></i></a>>
+                                    <a class="col-2 cross" data-bs-toggle="modal" data-bs-target="#modalTrick{{ trick.id }}"><i class="fa fa-times" ></i></a>
+                                    {# Modal pour confirmer la supression du trick #}
+                                    <div class="modal fade" id="modalTrick{{ trick.id }}" tabindex="-1" aria-labelledby="modalLabel{{ trick.id }}" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalLabel{{ trick.id }}">Modification d'Article</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Êtes-vous sur de vouloir supprimer le trick <strong>{{ trick.title }}</strong> ?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
+                                                    <a class="btn btn-primary" href="/trick/delete/{{ trick.id }}" role="button">Oui</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -126,5 +152,9 @@
             {% endif %}
         </div>
     </section>
-
+    {% for message in app.flashes('success') %}
+        <script>
+            alert('{{ message }}');
+        </script>
+    {% endfor %}
 {% endblock %}
