@@ -25,7 +25,7 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    {% if app.request.get('_route') == 'home' or app.request.get('_route') == 'trick_details' %}
+    {% if app.request.get('_route') == 'home' or app.request.get('_route') == 'trick_details' or app.request.get('_route') == 'edit_trick' %}
         <body>
     {% else %}
         <body class="d-flex flex-column h-100">

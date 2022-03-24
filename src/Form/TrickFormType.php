@@ -9,6 +9,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TrickFormType extends AbstractType
@@ -22,16 +24,25 @@ class TrickFormType extends AbstractType
                'class' => Group::class,
                'choice_label' => 'title',
                 'label' => 'Groupe'
-            ])
-            ->add('media', CollectionType::class, [
-                'entry_type' => MediaFormType::class,
-                'entry_options' => ['label' => false],
-                'allow_add' => true,
-                'allow_delete' => true,
-                'by_reference' => false,
-                'label' => false
-            ])
-        ;
+            ]);
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+            $trick = $event->getData();
+            $form = $event->getForm();
+
+            // checks if the Trick object is "new"
+            // If no data is passed to the form, the data is "null".
+            // This should be considered a new "Trick"
+            if (!$trick || null === $trick->getId()) {
+                $form->add('media', CollectionType::class, [
+                    'entry_type' => MediaFormType::class,
+                    'entry_options' => ['label' => false],
+                    'allow_add' => true,
+                    'allow_delete' => true,
+                    'by_reference' => false,
+                    'label' => false
+                ]);
+            }
+        });
     }
 
     public function configureOptions(OptionsResolver $resolver): void

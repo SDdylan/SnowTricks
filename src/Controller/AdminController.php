@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Group;
 use App\Entity\Media;
 use App\Entity\Trick;
+use App\Form\MediaFormType;
 use App\Form\RegistrationFormType;
 use App\Form\TrickFormType;
 use DateTime;
@@ -46,6 +47,7 @@ class AdminController extends AbstractController
         //Suppression de tout les media du trick
         foreach ($trick->getMedia() as $media)
         {
+            $trick->removeMedium($media);
             $entityManager->remove($media);
         }
 
@@ -115,6 +117,115 @@ class AdminController extends AbstractController
 
         return $this->render('admin/add_trick.html.twig', [
             'trickForm' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/trick/{idTrick}-{slugTrick}/edit", name="edit_trick")
+     * @IsGranted("ROLE_USER")
+     */
+    public function editTrick(string $slugTrick, int $idTrick, Request $request, EntityManagerInterface $entityManager)
+    {
+        $trick = $this->entityManager->getRepository(Trick::class)->findOneBy(['id' => $idTrick]);
+
+        $form = $this->createForm(TrickFormType::class, $trick);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $trick = $form->getData();
+            //Update du slug et de la date de modification
+            $trick->slugify($trick->getTitle());
+            $trick->setModifiedAt(new DateTime());
+
+            $entityManager->persist($trick);
+
+            $entityManager->flush();
+
+            //addFlash & redirect
+            $this->addFlash(
+                'success',
+                'La figure ' . $trick->getTitle() . ' à été modifiée avec succès !'
+            );
+
+            return $this->redirect('/trick/' . $trick->getId() . '-' . $trick->getSlug());
+        }
+
+        return $this->render('admin/edit_trick.html.twig', [
+            'trick' => $trick,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/media/delete/{idMedia}", name="delete_media")
+     * @IsGranted("ROLE_USER")
+     */
+    public function deleteMedia(int $idMedia, EntityManagerInterface $entityManager)
+    {
+        //AJOUTER TRY CATCH
+        $media = $this->entityManager->getRepository(Media::class)->find($idMedia);
+        $trick = $media->getTrick();
+
+        dump($media);
+        dump($trick);
+
+        $trick->removeMedium($media);
+        $entityManager->remove($media);
+
+        $entityManager->flush();
+
+        $this->addFlash(
+            'success',
+            'La média à été supprimé avec succès !'
+        );
+
+        return $this->redirect('/trick/' . $trick->getId() . '-' . $trick->getSlug() . '/edit');
+    }
+
+    /**
+     * @Route("/media/{idMedia}/edit", name="edit_media")
+     * @IsGranted("ROLE_USER")
+     */
+    public function editMedia(int $idMedia, Request $request, EntityManagerInterface $entityManager)
+    {
+        $media = $this->entityManager->getRepository(Media::class)->find($idMedia);
+
+        dump($media);
+        $form = $this->createForm(MediaFormType::class, $media);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+        }
+
+        return $this->render('admin/edit_media.html.twig', [
+            'media' => $media,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/trick/{idTrick}-{slugTrick}/media/add", name="add_media")
+     * @IsGranted("ROLE_USER")
+     */
+    public function addMedia(int $idTrick, string $slugTrick, Request $request, EntityManagerInterface $entityManager)
+    {
+        $media = new Media();
+        $trick = $this->entityManager->getRepository(Trick::class)->find($idTrick);
+
+        $form = $this->createForm(MediaFormType::class, $media);
+
+        $form->handleRequest($request);
+
+         if ($form->isSubmitted() && $form->isValid()) {
+
+         }
+
+        return $this->render('admin/add_media.html.twig', [
+            'form' => $form->createView(),
+            'trick' => $trick,
         ]);
     }
 }

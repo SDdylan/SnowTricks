@@ -1,0 +1,49 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Modification Media{% endblock %}
+
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+{% block body %}
+    <div id="formMedia">
+        <section>
+            <h1 id="form-title">Modification de Media</h1>
+            <div class="trick-media-col" align="center">
+                {% if media.type == 'image' %}
+                    <img class="col-12 trick-media" height="250" src="{{ media.url }}" alt="figure - media {{ media.id }}">
+                {% else %}
+                    <iframe class="col-12 trick-media" height="250" src="{{ media.url }}" allowfullscreen></iframe>
+                {% endif %}
+            </div>
+            <div class="container form-control form-trick " style="background: none; height: max-content">
+                {{ form_start(form) }}
+                {{  form_row(form.url, {'attr': {'label': "Lien URL"}}) }}
+                {{  form_row(form.type, {'attr': {'label': "Type"}}) }}
+                {{ form_end(form) }}
+                <div id="btn-form">
+                    <a class="btn btn-secondary" href="/trick/{{ media.trick.id }}-{{ media.trick.slug }}/edit" role="button">Retour</a>
+                    <button data-bs-toggle="modal" data-bs-target="#modalMedia" class="btn btn-success">Enregistrer</button>
+                    {# Modal pour confirmer la supression du media #}
+                    <div class="modal fade" id="modalMedia" tabindex="-1" aria-labelledby="modalLabelMedia" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalLabelMedia">Modification de Média</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Êtes-vous sur de vouloir modifier ce média ?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
+                                    <a class="btn btn-primary" type="submit" role="button">Oui</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}
+

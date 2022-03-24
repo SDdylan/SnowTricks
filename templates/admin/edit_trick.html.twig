@@ -1,0 +1,140 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+{% block title %}{{ trick.title }}{% endblock %}
+
+{% block header %}
+    {{ form_start(form) }}
+    <!-- Header - set the background image for the header in the line below  assets/img/img1.jpg -->
+    {% set image = trick.media|filter(v => v.type == "image")|first %}
+    {% if image is defined %}
+        {% set bgImage = image ? image.url %}
+    {% else %}
+        {% set bgImage = "../../build/img/img1.jpg" %}
+    {% endif %}
+    <header class="py-1 bg-image-full d-flex" style="background-image: url('{{ bgImage }}');">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7" style="margin-top: 15em">
+                    <div class="my-5">
+                        <div class="p-2"><h1 class="text-white h3">{{ form_row(form.title, {'attr': {'label': "Titre"}}) }}</h1></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end flex-column">
+            <div class="mb-auto p-2" style="background: white">
+                <a class="col-2 cross" data-bs-toggle="modal" data-bs-target="#modalTrickDelete"><i class="fa fa-times fa-2x" ></i></a>
+                {# Modal pour confirmer la supression du trick #}
+                <div class="modal fade" id="modalTrickDelete" tabindex="-1" aria-labelledby="modalLabelDelete" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalLabelDelete">Suppression d'Article</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Êtes-vous sur de vouloir supprimer le trick <strong>{{ trick.title }}</strong> ?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
+                                <a class="btn btn-primary" href="/trick/delete/{{ trick.id }}" role="button">Oui</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+{% endblock %}
+
+{% block body %}
+    <article class="container">
+        {# Section des images #}
+        <section class="row trick-medias">
+            {% for media in trick.media %}
+                <div class="col-sm-6 col-md-6 col-lg-4">
+                    <div class="trick-media-col">
+                        {% if media.type == 'image' %}
+                            <img class="col-12 trick-media" height="250" src="{{ media.url }}" alt="figure {{ trick.title }} - image {{ loop.index }}">
+                        {% else %}
+                            <iframe class="col-12 trick-media" height="250" src="{{ media.url }}" allowfullscreen></iframe>
+                        {% endif %}
+                        <div class="col-12">
+                            <a class="col-2 edit" href="/media/{{ media.id }}/edit" style="margin-right: 1.5em"><i class="fas fa-pen"></i></a>
+                            <a class="col-2 cross" data-bs-toggle="modal" data-bs-target="#modalMedia{{ media.id }}"><i class="fa fa-times" ></i></a>
+                            {# Modal pour confirmer la supression du media #}
+                            <div class="modal fade" id="modalMedia{{ media.id }}" tabindex="-1" aria-labelledby="modalLabelMedia{{ media.id }}" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modalLabelMedia{{ media.id }}">Suppression de Media</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Êtes-vous sur de vouloir supprimer ce média ?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
+                                            <a class="btn btn-primary" href="/media/delete/{{ media.id }}" role="button">Oui</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            {# Ajouter un nouveau media #}
+            <div class="col-sm-6 col-md-6 col-lg-4" style="vertical-align: middle;">
+                <div style="padding-top: 33%">
+                    <a href="/trick/{{ trick.id }}-{{ trick.slug }}/media/add"><i class="fas fa-plus fa-3x"></i><br>AJOUTER</a>
+                </div>
+            </div>
+        </section>
+        {# Section Texte #}
+        <section id="content-trick">
+            <div id="description-trick">
+                <p>{{ form_row(form.description, {'attr': {'label': "Description"}}) }}</p>
+            </div>
+            {# Affichage du groupe / btn validation et delete #}
+            <div class="row">
+                <div class="col">
+                    {{ form_row(form.group, {'attr': {'label': "Groupe"}}) }}
+                </div>
+            </div>
+            <div class="row align-items-end">
+                <div class="col text-center">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTrickEdit">Enregistrer</button>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalTrickDelete">Supprimer</button>
+                    {# Modal pour confirmer la modification du trick #}
+                    <div class="modal fade" id="modalTrickEdit" tabindex="-1" aria-labelledby="modalLabelEdit" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalLabelEdit">Modification d'Article</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Êtes-vous sur de vouloir modifier le trick <strong>{{ trick.title }}</strong> ?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
+                                    <button type="submit" class="btn btn-primary">Oui</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <hr>
+    </article>
+    {% for message in app.flashes('success') %}
+        <script>
+            alert('{{ message }}');
+        </script>
+    {% endfor %}
+    {{ form_end(form) }}
+{% endblock %}

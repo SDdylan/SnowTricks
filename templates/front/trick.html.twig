@@ -25,14 +25,14 @@
         {% if app.user %}
         <div class="d-flex justify-content-end flex-column">
             <div class="mb-auto p-2" style="background: white">
-                <a class="col-2 edit" href="/" style="margin-right: 1.5em"><i class="fas fa-pen fa-2x"></i></a>
+                <a class="col-2 edit" href="/trick/{{ trick.id }}-{{ trick.slug }}/edit" style="margin-right: 1.5em"><i class="fas fa-pen fa-2x"></i></a>
                 <a class="col-2 cross" data-bs-toggle="modal" data-bs-target="#modalTrick"><i class="fa fa-times fa-2x" ></i></a>
                 {# Modal pour confirmer la supression du trick #}
                 <div class="modal fade" id="modalTrick" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="modalLabel">Modification d'Article</h5>
+                                <h5 class="modal-title" id="modalLabel">Suppression d'Article</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -59,7 +59,7 @@
                 <div class="col-sm-6 col-md-6 col-lg-4">
                     <div class="trick-media-col">
                         {% if media.type == 'image' %}
-                            <img class="trick-media" src="{{ media.url }}" alt="figure {{ trick.title }} - image {{ loop.index }}">
+                            <img class="trick-media" height="250" src="{{ media.url }}" alt="figure {{ trick.title }} - image {{ loop.index }}">
                         {% else %}
                             <iframe class="trick-media" height="250" src="{{ media.url }}" allowfullscreen></iframe>
                         {% endif %}
@@ -137,4 +137,9 @@
             </div>
         </section>
     </article>
+    {% for message in app.flashes('success') %}
+        <script>
+            alert('{{ message }}');
+        </script>
+    {% endfor %}
 {% endblock %}
