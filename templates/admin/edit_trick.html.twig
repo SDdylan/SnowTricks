@@ -62,7 +62,7 @@
                             <iframe class="col-12 trick-media" height="250" src="{{ media.url }}" allowfullscreen></iframe>
                         {% endif %}
                         <div class="col-12">
-                            <a class="col-2 edit" href="/media/{{ media.id }}/edit" style="margin-right: 1.5em"><i class="fas fa-pen"></i></a>
+                            <a class="col-2 edit" href="/media/edit/{{ media.id }}" style="margin-right: 1.5em"><i class="fas fa-pen"></i></a>
                             <a class="col-2 cross" data-bs-toggle="modal" data-bs-target="#modalMedia{{ media.id }}"><i class="fa fa-times" ></i></a>
                             {# Modal pour confirmer la supression du media #}
                             <div class="modal fade" id="modalMedia{{ media.id }}" tabindex="-1" aria-labelledby="modalLabelMedia{{ media.id }}" aria-hidden="true">
@@ -87,9 +87,9 @@
                 </div>
             {% endfor %}
             {# Ajouter un nouveau media #}
-            <div class="col-sm-6 col-md-6 col-lg-4" style="vertical-align: middle;">
-                <div style="padding-top: 33%">
-                    <a href="/trick/{{ trick.id }}-{{ trick.slug }}/media/add"><i class="fas fa-plus fa-3x"></i><br>AJOUTER</a>
+            <div class="col-sm-6 col-md-6 col-lg-4" style="height: 250px; display: flex; align-items: center; justify-content: center">
+                <div style="">
+                    <a href="/trick/{{ trick.id }}-{{ trick.slug }}/media/add"><i class="fas fa-plus fa-5x"></i><br>Nouveau Média</a>
                 </div>
             </div>
         </section>

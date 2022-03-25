@@ -184,20 +184,26 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/media/{idMedia}/edit", name="edit_media")
+     * @Route("/media/edit/{idMedia}", name="edit_media")
      * @IsGranted("ROLE_USER")
      */
     public function editMedia(int $idMedia, Request $request, EntityManagerInterface $entityManager)
     {
         $media = $this->entityManager->getRepository(Media::class)->find($idMedia);
 
-        dump($media);
         $form = $this->createForm(MediaFormType::class, $media);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $media = $form->getData();
+            $entityManager->persist($media);
+            $entityManager->flush();
+            $this->addFlash(
+                'success',
+                'La média à été modifié avec succès !'
+            );
 
+            return $this->redirect('/trick/' . $media->getTrick()->getId() . '-' . $media->getTrick()->getSlug() . '/edit');
         }
 
         return $this->render('admin/edit_media.html.twig', [
@@ -220,7 +226,17 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
 
          if ($form->isSubmitted() && $form->isValid()) {
+             $media = $form->getData();
+             $media->setTrick($trick);
 
+             $entityManager->persist($media);
+             $entityManager->flush();
+             $this->addFlash(
+                 'success',
+                 'La média à été ajouté avec succès !'
+             );
+
+             return $this->redirect('/trick/' . $media->getTrick()->getId() . '-' . $media->getTrick()->getSlug() . '/edit');
          }
 
         return $this->render('admin/add_media.html.twig', [
