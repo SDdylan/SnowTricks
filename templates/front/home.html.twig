@@ -36,7 +36,7 @@
                             {% endif %}
                             <div class="card-body row">
                                 <a class="col-8" href="/trick/{{ trick.id }}-{{ trick.slug }}">{{ trick.title }}</a>
-                                <a class="col-2 edit" href="/"><i class="fas fa-pen"></i></a>
+                                <a class="col-2 edit" href="/trick/{{ trick.id }}-{{ trick.slug }}/edit"><i class="fas fa-pen"></i></a>
                                 <a class="col-2 cross" data-bs-toggle="modal" data-bs-target="#modalTrick{{ trick.id }}"><i class="fa fa-times" ></i></a>
                                 {# Modal pour confirmer la supression du trick #}
                                 <div class="modal fade" id="modalTrick{{ trick.id }}" tabindex="-1" aria-labelledby="modalLabel{{ trick.id }}" aria-hidden="true">
@@ -73,7 +73,7 @@
                                     {% endif %}
                                     <div class="card-body row">
                                         <a class="col-8" href="/trick/{{ trick.id }}-{{ trick.slug }}">{{ trick.title }}</a>
-                                        <a class="col-2 edit" href="/"><i class="fas fa-pen"></i></a>
+                                        <a class="col-2 edit" href="/trick/{{ trick.id }}-{{ trick.slug }}/edit"><i class="fas fa-pen"></i></a>
                                         <a class="col-2 cross" data-bs-toggle="modal" data-bs-target="#modalTrick{{ trick.id }}"><i class="fa fa-times" ></i></a>
                                         {# Modal pour confirmer la supression du trick #}
                                         <div class="modal fade" id="modalTrick{{ trick.id }}" tabindex="-1" aria-labelledby="modalLabel{{ trick.id }}" aria-hidden="true">
@@ -124,7 +124,7 @@
                                 {% endif %}
                                 <div class="card-body row">
                                     <a class="col-8" href="/trick/{{ trick.id }}-{{ trick.slug }}">{{ trick.title }}</a>
-                                    <a class="col-2 edit" href="/"><i class="fas fa-pen"></i></a>
+                                    <a class="col-2 edit" href="/trick/{{ trick.id }}-{{ trick.slug }}/edit"><i class="fas fa-pen"></i></a>
                                     <a class="col-2 cross" data-bs-toggle="modal" data-bs-target="#modalTrick{{ trick.id }}"><i class="fa fa-times" ></i></a>
                                     {# Modal pour confirmer la supression du trick #}
                                     <div class="modal fade" id="modalTrick{{ trick.id }}" tabindex="-1" aria-labelledby="modalLabel{{ trick.id }}" aria-hidden="true">
