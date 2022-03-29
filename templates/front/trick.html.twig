@@ -80,7 +80,7 @@
                 <div class="col">
                     <p>Date de création :<br><strong>{{ trick.createdAt|date('d/m/Y') }}</strong></p>
                 </div>
-                {% if trick.modifiedAt %}
+                {% if trick.modifiedAt != trick.createdAt %}
                 <div class="col">
                     <p>Date de modification :<br><strong>{{ trick.modifiedAt|date('d/m/Y') }}</strong></p>
                 </div>

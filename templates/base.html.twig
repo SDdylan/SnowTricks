@@ -43,6 +43,11 @@
                         <li class="nav-item"><a class="nav-link" href="/login">Connexion</a></li>
                         <li class="nav-item"><a class="nav-link" href="/register">Inscription</a></li>
                         {% if app.user %}
+                            {% for role in app.user.getRoles() %}
+                                {% if role == 'ROLE_ADMIN' %}
+                                    <li class="nav-item"><a class="nav-link" href="/admin">Administration</a></li>
+                                {% endif %}
+                            {% endfor %}
                             <li class="nav-item"><a class="nav-link" href="/trick/new">Ajouter Figure</a></li>
                             <li class="nav-item"><a class="nav-link" href="/logout">Déconnexion</a></li>
                         {% endif %}
