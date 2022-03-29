@@ -62,6 +62,43 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->flush();
     }
 
+    public function countAllUsers(): int
+    {
+        return $this->createQueryBuilder('u')
+            ->select('count(u.id)')
+            ->getQuery()
+            ->getSingleScalarResult()
+            ;
+    }
+
+    public static function getNbPagesUsers($nbUsers) : int
+    {
+        //$nbTricks = self::countAllTricks(); NE FONCTIONNE PAS $this pose problème dans createQueryBuilder de countAllTricks()
+        $nbPages = floatval($nbUsers/10);
+        return ceil($nbPages);
+    }
+
+    /**
+     * @throws \Doctrine\DBAL\Exception
+     */
+    public function getUsersPages(int $nbPages = 1, int $nbUsers): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        if ($nbUsers > $nbPages*10) {
+            if ($nbPages === 1) {
+                $sql = "SELECT * FROM user ORDER BY id DESC LIMIT 10 ";
+            } elseif ($nbPages > 1) {
+                $sql = "SELECT * FROM user ORDER BY id DESC LIMIT 10 OFFSET " . ($nbPages-1)*10 ;
+            }
+        } else {
+            $sql = "SELECT * FROM user ORDER BY id DESC LIMIT 10 OFFSET " . ($nbPages-1)*10 ;
+        }
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        return $resultSet->fetchAllAssociative();
+    }
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */

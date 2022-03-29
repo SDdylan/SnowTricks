@@ -2,13 +2,19 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Group;
 use App\Entity\Media;
 use App\Entity\Trick;
+use App\Entity\User;
 use App\Form\MediaFormType;
 use App\Form\RegistrationFormType;
 use App\Form\TrickFormType;
+use App\Repository\CommentRepository;
+use App\Repository\TrickRepository;
+use App\Repository\UserRepository;
 use DateTime;
+use Doctrine\DBAL\Exception;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,13 +32,138 @@ class AdminController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN", message="Vous n'avez pas l'autorisation d'accèder à cette page")
      * @Route("/admin", name="app_admin")
      */
-    public function index(): Response
+    public function index(TrickRepository $trickRepository): Response
     {
+        if (!in_array('ROLE_ADMIN', $this->getUser()->getRoles(), false)) $this->redirect('home');
+
+        $nbTricks = $trickRepository->countAllTricks();
+        $nbPages = $trickRepository->getNbPagesTricks($nbTricks);
+        $page = $_GET['page'] ?? 1;
+        $tricks = $trickRepository->getTricksPages($page, $nbPages);
+
         return $this->render('admin/index.html.twig', [
-            'controller_name' => 'AdminController',
+            'tricks' => $tricks,
+            'nbPages' => $nbPages,
+            'currentPage' => $page
         ]);
+    }
+
+    /**
+     * @IsGranted("ROLE_ADMIN", message="Vous n'avez pas l'autorisation d'accèder à cette page")
+     * @Route("/admin/users", name="admin_users")
+     */
+    public function usersAdmin(UserRepository $userRepository): Response
+    {
+        $nbUsers = $userRepository->countAllUsers();
+        $nbPages = $userRepository->getNbPagesUsers($nbUsers);
+        $page = $_GET['page'] ?? 1;
+        $users = $userRepository->getUsersPages($page, $nbPages);
+
+        return $this->render('admin/admin_users.html.twig', [
+            'users' => $users,
+            'nbPages' => $nbPages,
+            'currentPage' => $page
+        ]);
+    }
+
+    /**
+     * @IsGranted("ROLE_ADMIN", message="Vous n'avez pas l'autorisation d'accèder à cette page")
+     * @Route("/admin/users/{idUser}/comments", name="admin_user_comments")
+     */
+    public function userComments(int $idUser, Request $request, EntityManagerInterface $entityManager, CommentRepository $commentRepository): Response
+    {
+        $user = $this->entityManager->getRepository(User::class)->find($idUser);
+        $nbComments = $commentRepository->countCommentByUser($user);
+        $nbPages = $commentRepository->getNbPagesComments($nbComments);
+        $page = $_GET['page'] ?? 1;
+        $comments = $commentRepository->getCommentsByUserPages($page, $nbPages, $idUser);
+
+//        $comments = $this->entityManager->getRepository(Comment::class)->findBy( ['user_id' => $idUser]);
+
+        return $this->render('admin/admin_user_comments.html.twig', [
+            'user' => $user,
+            'nbPages' => $nbPages,
+            'currentPage' => $page
+       ]);
+    }
+
+    /**
+     * @IsGranted("ROLE_ADMIN", message="Vous n'avez pas l'autorisation d'accèder à cette page")
+     * @Route("/admin/trick/{idTrick}/comments", name="admin_trick_comments")
+     */
+    public function tricksComments(int $idTrick, Request $request, EntityManagerInterface $entityManager, CommentRepository $commentRepository): Response
+    {
+        $trick = $this->entityManager->getRepository(Trick::class)->find($idTrick);
+        $nbComments = $commentRepository->countCommentByTrick($trick);
+        $nbPages = $commentRepository->getNbPagesComments($nbComments);
+        $page = $_GET['page'] ?? 1;
+        $comments = $commentRepository->getCommentsByTrickPages($page, $nbPages, $idTrick);
+
+
+        return $this->render('admin/admin_trick_comments.html.twig', [
+            'trick' => $trick,
+            'nbPages' => $nbPages,
+            'currentPage' => $page
+        ]);
+    }
+
+    /**
+     *  @IsGranted("ROLE_ADMIN", message="Vous n'avez pas l'autorisation d'accèder à cette page")
+     * @Route("/admin/comment/{idComment}/change", name="admin_comments_change")
+     */
+    public function changeCommentStatus(int $idComment, Request $request, EntityManagerInterface $entityManager)
+    {
+        $comment = $this->entityManager->getRepository(Comment::class)->find($idComment);
+
+        if ($comment->getIsVerified() === true) {
+            $comment->setIsVerified(false);
+        } else {
+            $comment->setIsVerified(true);
+        }
+
+        $entityManager->persist($comment);
+        $entityManager->flush();
+
+        $this->addFlash(
+            'success',
+            'Le statut du commentaire à été modifié avec succès !'
+        );
+
+        if (isset($_POST['trick'])) {
+            $url = '/admin/trick/' . $_POST['trick'] . '/comments';
+        } elseif (isset($_POST['user'])) {
+            $url = '/admin/users/' . $_POST['user'] . '/comments';
+        }
+
+        return $this->redirect($url);
+    }
+
+    /**
+     *  @IsGranted("ROLE_ADMIN", message="Vous n'avez pas l'autorisation d'accèder à cette page")
+     * @Route("/admin/users/{idUser}/change", name="admin_user_change")
+     */
+    public function changeUserStatus(int $idUser, Request $request, EntityManagerInterface $entityManager)
+    {
+        $user = $this->entityManager->getRepository(User::class)->find($idUser);
+
+        if (in_array('ROLE_ADMIN', $user->getRoles())) {
+            $user->setRoles([$user->getSimpleUser()]);
+        } else {
+            $user->setRoles([$user->getSimpleUser(),$user->getAdminUser()]);
+        }
+
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        $this->addFlash(
+            'success',
+            "Le statut de l'utilisateur " . $user->getUsername() . " à été modifié avec succès !"
+        );
+
+        return $this->redirectToRoute('admin_users');
     }
 
     /**
@@ -98,8 +229,9 @@ class AdminController extends AbstractController
                     'Erreur : Vous devez ajouter au moins une image et une vidéo à la figure.'
                 );
             } else {
-
-                $trick->setCreatedAt(new DateTime());
+                $date = new DateTime();
+                $trick->setCreatedAt($date);
+                $trick->setModifiedAt($date);
                 $trick->setUser($this->getUser());
                 $trick->slugify($trick->getTitle());
 
