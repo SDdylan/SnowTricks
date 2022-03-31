@@ -23,33 +23,16 @@
                 </div>
             </div>
         </div>
-        <div class="d-flex justify-content-end flex-column">
-            <div class="mb-auto p-2" style="background: white">
-                <a class="col-2 cross" data-bs-toggle="modal" data-bs-target="#modalTrickDelete"><i class="fa fa-times fa-2x" ></i></a>
-                {# Modal pour confirmer la supression du trick #}
-                <div class="modal fade" id="modalTrickDelete" tabindex="-1" aria-labelledby="modalLabelDelete" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modalLabelDelete">Suppression d'Article</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <p>Êtes-vous sur de vouloir supprimer le trick <strong>{{ trick.title }}</strong> ?</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
-                                <a class="btn btn-primary" href="/trick/delete/{{ trick.id }}" role="button">Oui</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </header>
 {% endblock %}
 
 {% block body %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
     <article class="container">
         {# Section des images #}
         <section class="row trick-medias">
@@ -102,9 +85,10 @@
             <div class="row">
                 <div class="col">
                     {{ form_row(form.group, {'attr': {'label': "Groupe"}}) }}
+                    <a type="button" class="btn btn-primary" href="/group/add?url={{ trick.id }}-{{ trick.title }}">Ajouter Groupe</a>
                 </div>
             </div>
-            <div class="row align-items-end">
+            <div class="row align-items-end" style="margin-top: 2em">
                 <div class="col text-center">
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTrickEdit">Enregistrer</button>
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalTrickDelete">Supprimer</button>
@@ -131,10 +115,5 @@
         </section>
         <hr>
     </article>
-    {% for message in app.flashes('success') %}
-        <script>
-            alert('{{ message }}');
-        </script>
-    {% endfor %}
     {{ form_end(form) }}
 {% endblock %}

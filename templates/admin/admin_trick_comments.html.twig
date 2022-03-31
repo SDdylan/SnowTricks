@@ -3,6 +3,12 @@
 {% block title %}Hello AdminController!{% endblock %}
 
 {% block body %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center text-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
@@ -73,7 +79,7 @@
                 <tr>
                     <td><p><strong>Auteur</strong></p></td>
                     <td><p><strong>Contenu</strong></p></td>
-                    <td><p><strong>Date de modification</strong></p></td>
+                    <td><p><strong>Date de création</strong></p></td>
                     <td><p><strong>Statut</strong></p></td>
                 </tr>
                 {% for comment in trick.comments %}
@@ -111,9 +117,4 @@
             </table>
         </div>
     </div>
-    {% for message in app.flashes('success') %}
-        <script>
-            alert('{{ message }}');
-        </script>
-    {% endfor %}
 {% endblock %}

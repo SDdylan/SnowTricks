@@ -7,10 +7,12 @@ use App\Entity\Group;
 use App\Entity\Media;
 use App\Entity\Trick;
 use App\Entity\User;
+use App\Form\GroupFormType;
 use App\Form\MediaFormType;
 use App\Form\RegistrationFormType;
 use App\Form\TrickFormType;
 use App\Repository\CommentRepository;
+use App\Repository\GroupRepository;
 use App\Repository\TrickRepository;
 use App\Repository\UserRepository;
 use DateTime;
@@ -37,8 +39,6 @@ class AdminController extends AbstractController
      */
     public function index(TrickRepository $trickRepository): Response
     {
-        if (!in_array('ROLE_ADMIN', $this->getUser()->getRoles(), false)) $this->redirect('home');
-
         $nbTricks = $trickRepository->countAllTricks();
         $nbPages = $trickRepository->getNbPagesTricks($nbTricks);
         $page = $_GET['page'] ?? 1;
@@ -129,7 +129,7 @@ class AdminController extends AbstractController
 
         $this->addFlash(
             'success',
-            'Le statut du commentaire à été modifié avec succès !'
+            'La vérification du commentaire à été modifié avec succès !'
         );
 
         if (isset($_POST['trick'])) {
@@ -160,7 +160,7 @@ class AdminController extends AbstractController
 
         $this->addFlash(
             'success',
-            "Le statut de l'utilisateur " . $user->getUsername() . " à été modifié avec succès !"
+            "Le rôle de l'utilisateur " . $user->getUsername() . " à été modifié avec succès !"
         );
 
         return $this->redirectToRoute('admin_users');
@@ -194,7 +194,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/trick/new", name="add_trick")
+     * @Route("/trick/add", name="add_trick")
      * @IsGranted("ROLE_USER")
      */
     public function addTrick(Request $request, EntityManagerInterface $entityManager)
@@ -376,4 +376,118 @@ class AdminController extends AbstractController
             'trick' => $trick,
         ]);
     }
+
+    /**
+     * @Route("/group/add", name="add_group")
+     * @IsGranted("ROLE_USER")
+     */
+    public function addGroup(Request $request, EntityManagerInterface $entityManager)
+    {
+        $group = new Group();
+
+        if (isset($_GET['url'])) {
+            $url = "/trick/" . $_GET['url'] . "/edit";
+        } else {
+            $url = '/trick/add';
+        }
+
+        $form = $this->createForm(GroupFormType::class, $group);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $group = $form->getData();
+
+            $entityManager->persist($group);
+            $entityManager->flush();
+            $this->addFlash(
+                'success',
+                'La groupe à été ajouté avec succès !'
+            );
+            return $this->redirect($url);
+        }
+
+        return $this->render('admin/add_group.html.twig', [
+            'form' => $form->createView(),
+            'group' => $group,
+        ]);
+    }
+
+    /**
+     * @Route("/admin/groups/", name="admin_group")
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function displayGroup(GroupRepository $groupRepository): Response
+    {
+        $nbTricks = $groupRepository->countAllGroups();
+        $nbPages = $groupRepository->getNbPagesGroups($nbTricks);
+        $page = $_GET['page'] ?? 1;
+        $groups = $groupRepository->getGroupsPages($page, $nbPages);
+
+        return $this->render('admin/group.html.twig', [
+            'groups' => $groups,
+            'nbPages' => $nbPages,
+            'currentPage' => $page
+        ]);
+    }
+
+    /**
+     * @Route("/admin/group/{idGroup}/edit", name="edit_group")
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function editGroup(int $idGroup,Request $request, EntityManagerInterface $entityManager)
+    {
+        $group = $this->entityManager->getRepository(Group::class)->find($idGroup);
+
+        $form = $this->createForm(GroupFormType::class, $group);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $group = $form->getData();
+
+            $entityManager->persist($group);
+            $entityManager->flush();
+            $this->addFlash(
+                'success',
+                'La groupe "' . $group->getTitle() . '" à été modifié avec succès !'
+            );
+            return $this->redirectToRoute('admin_group');
+        }
+
+        return $this->render('admin/edit_group.html.twig', [
+            'form' => $form->createView(),
+            'group' => $group,
+        ]);
+    }
+
+    /**
+     * @Route("/admin/group/{idGroup}/delete", name="delete_group")
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function deleteGroup(int $idGroup, Request $request, EntityManagerInterface $entityManager)
+    {
+        $group = $this->entityManager->getRepository(Group::class)->find($idGroup);
+
+        dump($group->getTricks());
+
+        if ($group->getTricks()->isEmpty()) {
+            $entityManager->remove($group);
+            $entityManager->flush();
+
+            $this->addFlash(
+                'success',
+                'Le groupe ' . $group->getTitle() . ' à été supprimé avec succès !'
+            );
+        } else {
+
+            $this->addFlash(
+                'danger',
+                'Le groupe "' . $group->getTitle() . '" est associé à des figures et ne peut pas être supprimé.'
+            );
+        }
+        return $this->redirectToRoute('admin_group');
+    }
+
+
 }

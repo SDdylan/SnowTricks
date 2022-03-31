@@ -103,21 +103,28 @@ class CommentRepository extends ServiceEntityRepository
     /**
      * @throws \Doctrine\DBAL\Exception
      */
-    public function getCommentsByTrickPages(int $nbPages = 1, int $nbComments, int $idTrick): array
+    public function getCommentsByTrickPages(int $nbPages = 1, int $nbComments, int $idTrick, bool $isVerified = false): array
     {
+        $verified = $isVerified === true ? ' AND c.isVerified = true' : '';
+        $entityManager = $this->getEntityManager();
         $conn = $this->getEntityManager()->getConnection();
         if ($nbComments > $nbPages*10) {
             if ($nbPages === 1) {
-                $sql = "SELECT * FROM comment WHERE trick_id = '" . $idTrick . "' ORDER BY created_at DESC LIMIT 10 ";
+                $query = $entityManager->createQuery("SELECT c FROM App\Entity\Comment c WHERE c.trick = :c_id" . $verified . "' ORDER BY c.createdAt DESC")
+                                        ->setParameter('c_id', $idTrick)
+                                        ->setMaxResults(10);
             } elseif ($nbPages > 1) {
-                $sql = "SELECT * FROM comment WHERE trick_id = '" . $idTrick . "' ORDER BY created_at DESC LIMIT 10 OFFSET " . ($nbPages - 1) * 10;
+                $query = $entityManager->createQuery("SELECT c FROM App\Entity\Comment c WHERE c.trick_id = '" . $idTrick . $verified . "' ORDER BY c.created_at DESC")
+                                        ->setParameter('c_id', $idTrick)
+                                        ->setFirstResult(($nbPages-1)*10)
+                                        ->setMaxResults(10);
             }
         } else {
-            $sql = "SELECT * FROM comment WHERE trick_id = '" . $idTrick . "' ORDER BY created_at DESC LIMIT 10 OFFSET " . ($nbPages-1)*10 ;
+            $query = $entityManager->createQuery( "SELECT c FROM App\Entity\Comment c WHERE c.trick = :c_id" . $verified . " ORDER BY c.createdAt DESC")
+                                    ->setParameter('c_id', $idTrick)
+                                    ->setFirstResult(($nbPages-1)*10)
+                                    ->setMaxResults(10);
         }
-        $stmt = $conn->prepare($sql);
-        $resultSet = $stmt->executeQuery();
-
-        return $resultSet->fetchAllAssociative();
+        return $query->getResult();
     }
 }

@@ -52,6 +52,12 @@
 {% endblock %}
 
 {% block body %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
     <article class="container">
         {# Section des images #}
         <section class="row trick-medias">
@@ -93,11 +99,6 @@
             <div class="row">
                 <h2>Commentaires</h2>
                 {% if app.user %}
-                    {% for message in app.flashes('notice') %}
-                        <div class="flash-notice">
-                            {{ message }}
-                        </div>
-                    {% endfor %}
                 <div class="col-8">
                 {{ form_start(commentForm) }}
                 {{ form_widget(commentForm) }}
@@ -111,11 +112,64 @@
             {% endif %}
             </div>
             <hr>
+            <!-- DEBUT PAGINATION -->
+            {% if nbPages > 1 %}
+                {# nombre de pages autour de l'actuelle page+1 #}
+                {% set nearbyPagesLimit = 4 %}
+                <div class="row text-uppercase justify-content-center">
+                    <ul class="pagination justify-content-center" style="width: 50%">
+                        {% if currentPage != 1 %}
+                            <li class="page-item">
+                                <a class="page-link" href="/trick/{{ trick.id }}-{{ trick.slug }}?page={{ currentPage-1 }}#comments-trick" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="page-item">
+                                <a class="page-link" href="/trick/{{ trick.id }}-{{ trick.slug }}#comments-trick" aria-label="Previous" disabled="disabled">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% for i in 1..nbPages %}
+                            {% if 0 == (currentPage - nearbyPagesLimit) - loop.index %} {# points avant #}
+                                <li class="disabled page-item"><a class="page-link" href="#">...</a></li>
+                            {% elseif 0 == (currentPage + nearbyPagesLimit) - loop.index %} {# points après #}
+                                <li class="disabled page-item"><a class="page-link" href="#">...</a></li>
+                            {% elseif 0 < (currentPage - nearbyPagesLimit) - loop.index %} {# tout cacher avant #}
+                            {% elseif 0 > (currentPage + nearbyPagesLimit) - loop.index %} {# tout cacher après #}
+                            {% else %}
+                                <li {% if currentPage == loop.index  %} class="active page-item"{% endif %}>
+                                    <a class="page-link" href="/trick/{{ trick.id }}-{{ trick.slug }}?page={{ loop.index }}#comments-trick">{{ loop.index }}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if currentPage != nbPages %}
+                            <li class="page-item">
+                                <a class="page-link" href="/trick/{{ trick.id }}-{{ trick.slug }}?page={{ currentPage+1 }}#comments-trick" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="page-item">
+                                <a class="page-link" href="/trick/{{ trick.id }}-{{ trick.slug }}?page={{ currentPage}}#comments-trick" aria-label="Next" disabled="disabled">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            {% endif %}
+            <!-- FIN PAGINATION -->
             <!-- Comments -->
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
-                        {% for comment in trick.comments|filter(c => c.isVerified == 1) %}
+                        {% for comment in comments|filter(c => c.isVerified == 1) %}
                             <!-- Post preview-->
                             <div class="card container comment">
                                 <div class="row">
@@ -137,9 +191,4 @@
             </div>
         </section>
     </article>
-    {% for message in app.flashes('success') %}
-        <script>
-            alert('{{ message }}');
-        </script>
-    {% endfor %}
 {% endblock %}

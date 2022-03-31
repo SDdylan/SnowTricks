@@ -94,7 +94,7 @@ class SecurityController extends AbstractController
         }
 
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
-        $this->addFlash('success', 'Votre adresse à été vérifiée.');
+        $this->addFlash('success', 'Votre adresse mail à été vérifiée.');
 
         return $this->redirectToRoute('home');
     }

@@ -4,17 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f6192bbf-6758-4e89-a8a2-18dc09b0a008" name="Changes" comment="Added link to edit page in home.html.twig&#10;Editing and adding of Media now works &#10;Modified route to edit a media&#10;Corrected display of addMedia">
-      <change afterPath="$PROJECT_DIR$/templates/admin/admin_trick_comments.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/admin_user_comments.html.twig" afterDir="false" />
+    <list default="true" id="f6192bbf-6758-4e89-a8a2-18dc09b0a008" name="Changes" comment="Added views and routes to all the administration part :&#10;- Admin homepage&#10;- Comments status by User&#10;- Comments status by Post&#10;- Change a Comment status&#10;- Users status&#10;- Change User status&#10;&#10;Added link to administration if user is admin in navbar&#10;Added functions in CommentRepository.php to update and display Comments in admin pages&#10;Added functions in TrickRepository.php &amp; UserRepository.php to display Entities in admin pages&#10;&#10;Now Tricks entity have the same date for modified_at and updated_at when created (in admin pages they are sorted by modified_at)">
+      <change afterPath="$PROJECT_DIR$/templates/admin/add_group.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/edit_group.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/FrontController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FrontController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/ChangePasswordFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ChangePasswordFormType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/CommentType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/CommentFormType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repository/CommentRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/CommentRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/TrickRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/TrickRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/UserRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/GroupRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/GroupRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/add_trick.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/add_trick.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/admin_trick_comments.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/admin_trick_comments.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/admin_user_comments.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/admin_user_comments.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/admin_users.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/admin_users.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/edit_trick.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/edit_trick.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/admin/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/front/home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front/home.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/front/index.html.twig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/front/trick.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front/trick.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/reset_password/request.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reset_password/request.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +38,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -179,6 +198,8 @@
       <workItem from="1648046902143" duration="137000" />
       <workItem from="1648201964837" duration="5010000" />
       <workItem from="1648548581911" duration="574000" />
+      <workItem from="1648628848714" duration="22722000" />
+      <workItem from="1648729755627" duration="1119000" />
     </task>
     <task id="LOCAL-00001" summary="deleted local env var in .env (now use a .env.local.php made with composer dump-env)&#10;updated css on the base template to have the footer always on the bottom of the screen, even on page without much content.&#10;updated all twig views for the password reset.">
       <created>1647446437858</created>

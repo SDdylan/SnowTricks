@@ -8,33 +8,19 @@
     <div id="formTrick">
         <section>
             <h1 id="form-title">Création de Figure</h1>
-            <div class="container form-control form-trick " style="background: none; height: max-content">
+            <div class="container form-control form-trick" style="background: none; height: max-content">
                 {{ form_start(trickForm) }}
                 {{  form_row(trickForm.title, {'attr': {'label': "Titre"}}) }}
                 {{  form_row(trickForm.description, {'attr': {'label': "Description"}}) }}
                 {{ form_row(trickForm.group, {'attr': {'label': "Groupe"}}) }}
+                <a type="button" class="btn btn-primary" href="/group/add">Ajouter Groupe</a>
                 <h3>Medias</h3>
                 <p><small>Veillez à ajouter au moins <strong>une</strong> image et <strong>une</strong> vidéo.</small></p>
                 {% for message in app.flashes('warning') %}
-                    <script>
-                        alert('{{ message }}');
-                    </script>
-{#                    <div class="modal fade" id="modalTrick" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true" data-show="true">#}
-{#                        <div class="modal-dialog">#}
-{#                            <div class="modal-content">#}
-{#                                <div class="modal-header">#}
-{#                                    <h5 class="modal-title" id="modalLabel">Erreur :</h5>#}
-{#                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>#}
-{#                                </div>#}
-{#                                <div class="modal-body">#}
-{#                                    <p>{{ message }}</p>#}
-{#                                </div>#}
-{#                                <div class="modal-footer">#}
-{#                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
                 {% endfor %}
                 <ul class="media" data-index="{{ trickForm.media|length > 0 ? trickForm.media|last.vars.name + 1 : 0 }}" data-prototype="{{ form_widget(trickForm.media.vars.prototype)|e('html_attr') }}" >
                      {% for media in trickForm.media %}

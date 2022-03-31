@@ -1,0 +1,41 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Modification Media{% endblock %}
+
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+{% block body %}
+    <div id="formGroup">
+        <section>
+            <h1 id="form-title">Modification de Groupe</h1>
+            {{ form_start(form) }}
+            <div class="container form-control form-trick" style="background: none; height: max-content">
+                {{  form_row(form.title, {'attr': {'label': "Nom"}}) }}
+                {{  form_row(form.description, {'attr': {'label': "Description"}}) }}
+                <div id="btn-form">
+                    <a class="btn btn-secondary" href="/admin/groups" role="button">Retour</a>
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#modalGroup" class="btn btn-primary">Enregistrer</button>
+                    {# Modal pour confirmer la modification du media #}
+                    <div class="modal fade" id="modalGroup" tabindex="-1" aria-labelledby="modalLabelGroup" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalLabelGroup">Modification de Groupe</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Êtes-vous sur de vouloir modifier ce groupe ?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
+                                    <button type="submit" class="btn btn-primary">Oui</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </section>
+    </div>
+{% endblock %}

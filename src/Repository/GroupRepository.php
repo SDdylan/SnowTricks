@@ -47,4 +47,42 @@ class GroupRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function countAllGroups(): int
+    {
+        return $this->createQueryBuilder('g')
+            ->select('count(g.id)')
+            ->getQuery()
+            ->getSingleScalarResult()
+            ;
+    }
+
+    public static function getNbPagesGroups($nbGroupes) : int
+    {
+        //$nbTricks = self::countAllTricks(); NE FONCTIONNE PAS $this pose problème dans createQueryBuilder de countAllTricks()
+        $nbPages = floatval($nbGroupes/10);
+        return ceil($nbPages);
+    }
+
+    /**
+     * @throws \Doctrine\DBAL\Exception
+     */
+    public function getGroupsPages(int $nbPages = 1, int $nbGroupes): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        if ($nbGroupes > $nbPages*10) {
+            if ($nbPages === 1) {
+                $sql = "SELECT * FROM `group` ORDER BY id DESC LIMIT 10 ";
+            } elseif ($nbPages > 1) {
+                $sql = "SELECT * FROM `group` ORDER BY id DESC LIMIT 10 OFFSET " . ($nbPages-1)*10 ;
+            }
+        } else {
+            $sql = "SELECT * FROM `group` ORDER BY id DESC LIMIT 10 OFFSET " . ($nbPages-1)*10 ;
+        }
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        return $resultSet->fetchAllAssociative();
+    }
+
 }
