@@ -4,28 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f6192bbf-6758-4e89-a8a2-18dc09b0a008" name="Changes" comment="Added views and routes to all the administration part :&#10;- Admin homepage&#10;- Comments status by User&#10;- Comments status by Post&#10;- Change a Comment status&#10;- Users status&#10;- Change User status&#10;&#10;Added link to administration if user is admin in navbar&#10;Added functions in CommentRepository.php to update and display Comments in admin pages&#10;Added functions in TrickRepository.php &amp; UserRepository.php to display Entities in admin pages&#10;&#10;Now Tricks entity have the same date for modified_at and updated_at when created (in admin pages they are sorted by modified_at)">
-      <change afterPath="$PROJECT_DIR$/templates/admin/add_group.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/edit_group.html.twig" afterDir="false" />
+    <list default="true" id="f6192bbf-6758-4e89-a8a2-18dc09b0a008" name="Changes" comment="- Added functions and views to add, edit &amp; delete Groups&#10;- Added GroupFormType.php&#10;- Replaced 'Date de modification' with 'Date de création' in admin_trick_comments.html.twig &amp; admin_user_comments.html.twig&#10;- Fixed paging link for some Views.&#10;- Corrected wording for some flash messages&#10;- Modified display of flash messages in all views which contains these&#10;- Renamed form CommentFormType.php&#10;- Changed label of fields in ChangePasswordFormType.php&#10;- getCommentsByTrickPages() in CommentRepository.php now use createQuery()&#10;- Deleted link to suppression of Trick on top &amp; added link to create a Group in edit_trick.html.twig&#10;- Added functions to page&#10;- Added paging on Comment for trick.html.twig and for Groups in group.html.twig&#10;- edit and delete Trick link only visible for a logged user in Front/home.html.twig&#10;- added link to manage Groups in Admin paginate Groups&#10;- Deleted index.html.twig in /Front">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/FrontController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FrontController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ChangePasswordFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ChangePasswordFormType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/CommentType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/CommentFormType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repository/CommentRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/CommentRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repository/GroupRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/GroupRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/add_trick.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/add_trick.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/admin_trick_comments.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/admin_trick_comments.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/admin_user_comments.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/admin_user_comments.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/admin_users.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/admin_users.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/edit_trick.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/edit_trick.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/TrickRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/TrickRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/UserRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/admin/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/front/home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front/home.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/front/index.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/front/trick.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front/trick.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/reset_password/request.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reset_password/request.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,7 +185,7 @@
       <workItem from="1648201964837" duration="5010000" />
       <workItem from="1648548581911" duration="574000" />
       <workItem from="1648628848714" duration="22722000" />
-      <workItem from="1648729755627" duration="1119000" />
+      <workItem from="1648729755627" duration="4482000" />
     </task>
     <task id="LOCAL-00001" summary="deleted local env var in .env (now use a .env.local.php made with composer dump-env)&#10;updated css on the base template to have the footer always on the bottom of the screen, even on page without much content.&#10;updated all twig views for the password reset.">
       <created>1647446437858</created>
@@ -222,7 +208,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648042460497</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="- Added functions and views to add, edit &amp; delete Groups&#10;- Added GroupFormType.php&#10;- Replaced 'Date de modification' with 'Date de création' in admin_trick_comments.html.twig &amp; admin_user_comments.html.twig&#10;- Fixed paging link for some Views.&#10;- Corrected wording for some flash messages&#10;- Modified display of flash messages in all views which contains these&#10;- Renamed form CommentFormType.php&#10;- Changed label of fields in ChangePasswordFormType.php&#10;- getCommentsByTrickPages() in CommentRepository.php now use createQuery()&#10;- Deleted link to suppression of Trick on top &amp; added link to create a Group in edit_trick.html.twig&#10;- Added functions to page&#10;- Added paging on Comment for trick.html.twig and for Groups in group.html.twig&#10;- edit and delete Trick link only visible for a logged user in Front/home.html.twig&#10;- added link to manage Groups in Admin paginate Groups&#10;- Deleted index.html.twig in /Front">
+      <created>1648730994898</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1648730994898</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -246,6 +239,7 @@
     <MESSAGE value="added Form for Media and Trick entities. (Media can be added directly on Trick form)&#10;Added addTrick() function in AdminController.php that redirect to add_trick route&#10;Added add_trick.html.twig View&#10;Added new function to add and remove Medias Form on Trick Form in app.js&#10;Deleted useless code in CommentType.php and SecurityController.php&#10;Modified display of flash messages in home.html.twig&#10;Added unicity constraint on title field of Trick.php&#10;&#10;Added link to add trick in base.html.twig and modified body class if on route trick_details" />
     <MESSAGE value="Added functions on AdminController.php and Views :&#10;- editTrick() (edit_trick.html.twig)&#10;- deleteMedia() (no view)&#10;- editMedia() (edit_media.html.twig)&#10;- addMedia() (add_media.html.twig)&#10;Added edit_trick to the pages with different body classes&#10;Added '$trick-&gt;removeMedium($media);' on deleteTrick() for safety&#10;Added link to edit page on trick page&#10;Added addEventListener on TrickFormType.php to only add media on new Trick Form.&#10;&#10;@TODO: finish if Form is valid &amp; submitted part on editMedia() &amp; addMedia()&#10;@TODO: Vertical align on &quot;Add Media&quot; on edit_trick.html.twig&#10;@TODO: correct the css and general display of the page." />
     <MESSAGE value="Added link to edit page in home.html.twig&#10;Editing and adding of Media now works &#10;Modified route to edit a media&#10;Corrected display of addMedia" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added link to edit page in home.html.twig&#10;Editing and adding of Media now works &#10;Modified route to edit a media&#10;Corrected display of addMedia" />
+    <MESSAGE value="- Added functions and views to add, edit &amp; delete Groups&#10;- Added GroupFormType.php&#10;- Replaced 'Date de modification' with 'Date de création' in admin_trick_comments.html.twig &amp; admin_user_comments.html.twig&#10;- Fixed paging link for some Views.&#10;- Corrected wording for some flash messages&#10;- Modified display of flash messages in all views which contains these&#10;- Renamed form CommentFormType.php&#10;- Changed label of fields in ChangePasswordFormType.php&#10;- getCommentsByTrickPages() in CommentRepository.php now use createQuery()&#10;- Deleted link to suppression of Trick on top &amp; added link to create a Group in edit_trick.html.twig&#10;- Added functions to page&#10;- Added paging on Comment for trick.html.twig and for Groups in group.html.twig&#10;- edit and delete Trick link only visible for a logged user in Front/home.html.twig&#10;- added link to manage Groups in Admin paginate Groups&#10;- Deleted index.html.twig in /Front" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Added functions and views to add, edit &amp; delete Groups&#10;- Added GroupFormType.php&#10;- Replaced 'Date de modification' with 'Date de création' in admin_trick_comments.html.twig &amp; admin_user_comments.html.twig&#10;- Fixed paging link for some Views.&#10;- Corrected wording for some flash messages&#10;- Modified display of flash messages in all views which contains these&#10;- Renamed form CommentFormType.php&#10;- Changed label of fields in ChangePasswordFormType.php&#10;- getCommentsByTrickPages() in CommentRepository.php now use createQuery()&#10;- Deleted link to suppression of Trick on top &amp; added link to create a Group in edit_trick.html.twig&#10;- Added functions to page&#10;- Added paging on Comment for trick.html.twig and for Groups in group.html.twig&#10;- edit and delete Trick link only visible for a logged user in Front/home.html.twig&#10;- added link to manage Groups in Admin paginate Groups&#10;- Deleted index.html.twig in /Front" />
   </component>
 </project>

@@ -81,8 +81,6 @@ class AdminController extends AbstractController
         $page = $_GET['page'] ?? 1;
         $comments = $commentRepository->getCommentsByUserPages($page, $nbPages, $idUser);
 
-//        $comments = $this->entityManager->getRepository(Comment::class)->findBy( ['user_id' => $idUser]);
-
         return $this->render('admin/admin_user_comments.html.twig', [
             'user' => $user,
             'nbPages' => $nbPages,

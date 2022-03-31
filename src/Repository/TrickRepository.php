@@ -69,19 +69,21 @@ class TrickRepository extends ServiceEntityRepository
      */
     public function getTricksPages(int $nbPages = 1, int $nbTricks): array
     {
-        $conn = $this->getEntityManager()->getConnection();
+        $entityManager = $this->getEntityManager();
         if ($nbTricks > $nbPages*10) {
             if ($nbPages === 1) {
-                $sql = "SELECT * FROM trick ORDER BY modified_at DESC LIMIT 10 ";
+                $query = $entityManager->createQuery("SELECT t FROM App\Entity\Trick t ORDER BY t.modifiedAt DESC")
+                                        ->setMaxResults(10);
             } elseif ($nbPages > 1) {
-                $sql = "SELECT * FROM trick ORDER BY modified_at DESC LIMIT 10 OFFSET " . ($nbPages-1)*10 ;
+                $query = $entityManager->createQuery("SELECT t FROM App\Entity\Trick t ORDER BY t.modifiedAt DESC")
+                                        ->setFirstResult(($nbPages-1)*10)
+                                        ->setMaxResults(10);
             }
         } else {
-            $sql = "SELECT * FROM trick ORDER BY modified_at DESC LIMIT 10 OFFSET " . ($nbPages-1)*10 ;
+            $query = $entityManager->createQuery("SELECT t FROM App\Entity\Trick t ORDER BY t.modifiedAt DESC")
+                ->setFirstResult(($nbPages-1)*10)
+                ->setMaxResults(10);
         }
-        $stmt = $conn->prepare($sql);
-        $resultSet = $stmt->executeQuery();
-
-        return $resultSet->fetchAllAssociative();
+        return $query->getResult();
     }
 }

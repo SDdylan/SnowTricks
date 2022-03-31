@@ -84,7 +84,7 @@
                 {% for trick in tricks %}
                     <tr>
                         <td>{{ trick.title }}</td>
-                        <td>{{ trick.modified_at | date('d/m/Y') }}</td>
+                        <td>{{ trick.modifiedAt | date('d/m/Y') }}</td>
                         <td><a class="btn btn-primary btn-sm text-uppercase" href="admin/trick/{{ trick.id }}/comments">commentaires</a></td>
                         <td><a class="btn btn-primary btn-sm text-uppercase" href="/trick/{{ trick.id }}-{{ trick.slug }}/edit">éditer</a></td>
                         <td>

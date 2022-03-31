@@ -67,22 +67,24 @@ class GroupRepository extends ServiceEntityRepository
     /**
      * @throws \Doctrine\DBAL\Exception
      */
-    public function getGroupsPages(int $nbPages = 1, int $nbGroupes): array
+    public function getGroupsPages(int $nbPages = 1, int $nbGroups): array
     {
-        $conn = $this->getEntityManager()->getConnection();
-        if ($nbGroupes > $nbPages*10) {
+        $entityManager = $this->getEntityManager();
+        if ($nbGroups > $nbPages*10) {
             if ($nbPages === 1) {
-                $sql = "SELECT * FROM `group` ORDER BY id DESC LIMIT 10 ";
+                $query = $entityManager->createQuery("SELECT g FROM App\Entity\Group g ORDER BY g.id DESC")
+                                        ->setMaxResults(10);
             } elseif ($nbPages > 1) {
-                $sql = "SELECT * FROM `group` ORDER BY id DESC LIMIT 10 OFFSET " . ($nbPages-1)*10 ;
+                $query = $entityManager->createQuery("SELECT g FROM App\Entity\Group g ORDER BY g.id DESC")
+                                        ->setFirstResult(($nbPages-1)*10)
+                                        ->setMaxResults(10);
             }
         } else {
-            $sql = "SELECT * FROM `group` ORDER BY id DESC LIMIT 10 OFFSET " . ($nbPages-1)*10 ;
+            $query = $entityManager->createQuery("SELECT g FROM App\Entity\Group g ORDER BY g.id DESC")
+                                    ->setFirstResult(($nbPages-1)*10)
+                                    ->setMaxResults(10);
         }
-        $stmt = $conn->prepare($sql);
-        $resultSet = $stmt->executeQuery();
-
-        return $resultSet->fetchAllAssociative();
+        return $query->getResult();
     }
-
 }
+
