@@ -296,20 +296,34 @@ class AdminController extends AbstractController
         //AJOUTER TRY CATCH
         $media = $this->entityManager->getRepository(Media::class)->find($idMedia);
         $trick = $media->getTrick();
+        $typeMedia = $media->getType();
+        //On s'assure qu'il y ait bien au moins une image et une vidéo
+        $mediasSameType = 0;
+        foreach ($trick->getMedia() as $media) {
+            if ($media->getType() == $typeMedia) {
+                $mediasSameType++;
+            }
+            if($mediasSameType > 1 ) {
+                break;
+            }
+        }
 
-        dump($media);
-        dump($trick);
+        if ($mediasSameType==1) {
+            $this->addFlash(
+                'warning',
+                "Erreur : Vous ne pouvez pas supprimer ce media car il s'agit de la seule " . $media->getType()
+            );
+        } else {
+            $trick->removeMedium($media);
+            $entityManager->remove($media);
 
-        $trick->removeMedium($media);
-        $entityManager->remove($media);
+            $entityManager->flush();
 
-        $entityManager->flush();
-
-        $this->addFlash(
-            'success',
-            'La média à été supprimé avec succès !'
-        );
-
+            $this->addFlash(
+                'success',
+                'La média à été supprimé avec succès !'
+            );
+        }
         return $this->redirect('/trick/' . $trick->getId() . '-' . $trick->getSlug() . '/edit');
     }
 
