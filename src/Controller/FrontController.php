@@ -55,7 +55,7 @@ class FrontController extends AbstractController
         //Comments & paging
         $nbComments = $commentRepository->countCommentsByTrick($trick, true);
         $nbPages = $commentRepository->getNbPagesComments($nbComments);
-        $page = $_GET['page'] ?? 1;
+        $page = $request->query->get('page') ?? 1;
         $comments = $commentRepository->getCommentsByTrickPages($page, $nbPages, $idTrick, true);
 
         if ($form->isSubmitted() && $form->isValid()) {

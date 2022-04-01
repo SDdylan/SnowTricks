@@ -502,8 +502,6 @@ class AdminController extends AbstractController
     {
         $group = $this->entityManager->getRepository(Group::class)->find($idGroup);
 
-        dump($group->getTricks());
-
         if ($group->getTricks()->isEmpty()) {
             $entityManager->remove($group);
             $entityManager->flush();
