@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f6192bbf-6758-4e89-a8a2-18dc09b0a008" name="Changes" comment="Deleted useless code in AdminController.php&#10;Functions in Repositories now use createQuery rather than SQL string.&#10; - Modified index.html.twig to have corresponding field with new query">
+    <list default="true" id="f6192bbf-6758-4e89-a8a2-18dc09b0a008" name="Changes" comment="Added button to display medias when on mobile display">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/edit_trick.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/edit_trick.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/front/trick.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front/trick.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AdminController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,7 +212,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648730994898</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added button to display medias when on mobile display">
+      <created>1648815374247</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1648815374247</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -239,6 +244,7 @@
     <MESSAGE value="Added functions on AdminController.php and Views :&#10;- editTrick() (edit_trick.html.twig)&#10;- deleteMedia() (no view)&#10;- editMedia() (edit_media.html.twig)&#10;- addMedia() (add_media.html.twig)&#10;Added edit_trick to the pages with different body classes&#10;Added '$trick-&gt;removeMedium($media);' on deleteTrick() for safety&#10;Added link to edit page on trick page&#10;Added addEventListener on TrickFormType.php to only add media on new Trick Form.&#10;&#10;@TODO: finish if Form is valid &amp; submitted part on editMedia() &amp; addMedia()&#10;@TODO: Vertical align on &quot;Add Media&quot; on edit_trick.html.twig&#10;@TODO: correct the css and general display of the page." />
     <MESSAGE value="Added link to edit page in home.html.twig&#10;Editing and adding of Media now works &#10;Modified route to edit a media&#10;Corrected display of addMedia" />
     <MESSAGE value="- Added functions and views to add, edit &amp; delete Groups&#10;- Added GroupFormType.php&#10;- Replaced 'Date de modification' with 'Date de création' in admin_trick_comments.html.twig &amp; admin_user_comments.html.twig&#10;- Fixed paging link for some Views.&#10;- Corrected wording for some flash messages&#10;- Modified display of flash messages in all views which contains these&#10;- Renamed form CommentFormType.php&#10;- Changed label of fields in ChangePasswordFormType.php&#10;- getCommentsByTrickPages() in CommentRepository.php now use createQuery()&#10;- Deleted link to suppression of Trick on top &amp; added link to create a Group in edit_trick.html.twig&#10;- Added functions to page&#10;- Added paging on Comment for trick.html.twig and for Groups in group.html.twig&#10;- edit and delete Trick link only visible for a logged user in Front/home.html.twig&#10;- added link to manage Groups in Admin paginate Groups&#10;- Deleted index.html.twig in /Front" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Added functions and views to add, edit &amp; delete Groups&#10;- Added GroupFormType.php&#10;- Replaced 'Date de modification' with 'Date de création' in admin_trick_comments.html.twig &amp; admin_user_comments.html.twig&#10;- Fixed paging link for some Views.&#10;- Corrected wording for some flash messages&#10;- Modified display of flash messages in all views which contains these&#10;- Renamed form CommentFormType.php&#10;- Changed label of fields in ChangePasswordFormType.php&#10;- getCommentsByTrickPages() in CommentRepository.php now use createQuery()&#10;- Deleted link to suppression of Trick on top &amp; added link to create a Group in edit_trick.html.twig&#10;- Added functions to page&#10;- Added paging on Comment for trick.html.twig and for Groups in group.html.twig&#10;- edit and delete Trick link only visible for a logged user in Front/home.html.twig&#10;- added link to manage Groups in Admin paginate Groups&#10;- Deleted index.html.twig in /Front" />
+    <MESSAGE value="Added button to display medias when on mobile display" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added button to display medias when on mobile display" />
   </component>
 </project>

@@ -39,9 +39,11 @@ class AdminController extends AbstractController
      */
     public function index(TrickRepository $trickRepository): Response
     {
+        $request = Request::createFromGlobals();
+
         $nbTricks = $trickRepository->countAllTricks();
         $nbPages = $trickRepository->getNbPagesTricks($nbTricks);
-        $page = $_GET['page'] ?? 1;
+        $page = $request->query->get('page') ?? 1;
         $tricks = $trickRepository->getTricksPages($page, $nbPages);
 
         return $this->render('admin/index.html.twig', [
@@ -57,9 +59,11 @@ class AdminController extends AbstractController
      */
     public function usersAdmin(UserRepository $userRepository): Response
     {
+        $request = Request::createFromGlobals();
+
         $nbUsers = $userRepository->countAllUsers();
         $nbPages = $userRepository->getNbPagesUsers($nbUsers);
-        $page = $_GET['page'] ?? 1;
+        $page = $request->query->get('page') ?? 1;
         $users = $userRepository->getUsersPages($page, $nbPages);
 
         return $this->render('admin/admin_users.html.twig', [
@@ -75,10 +79,12 @@ class AdminController extends AbstractController
      */
     public function userComments(int $idUser, Request $request, EntityManagerInterface $entityManager, CommentRepository $commentRepository): Response
     {
+        $request = Request::createFromGlobals();
+
         $user = $this->entityManager->getRepository(User::class)->find($idUser);
         $nbComments = $commentRepository->countCommentByUser($user);
         $nbPages = $commentRepository->getNbPagesComments($nbComments);
-        $page = $_GET['page'] ?? 1;
+        $page = $request->query->get('page') ?? 1;
         $comments = $commentRepository->getCommentsByUserPages($page, $nbPages, $idUser);
 
         return $this->render('admin/admin_user_comments.html.twig', [
@@ -94,10 +100,12 @@ class AdminController extends AbstractController
      */
     public function tricksComments(int $idTrick, Request $request, EntityManagerInterface $entityManager, CommentRepository $commentRepository): Response
     {
+        $request = Request::createFromGlobals();
+
         $trick = $this->entityManager->getRepository(Trick::class)->find($idTrick);
         $nbComments = $commentRepository->countCommentByTrick($trick);
         $nbPages = $commentRepository->getNbPagesComments($nbComments);
-        $page = $_GET['page'] ?? 1;
+        $page = $request->query->get('page') ?? 1;
         $comments = $commentRepository->getCommentsByTrickPages($page, $nbPages, $idTrick);
 
 
@@ -112,8 +120,9 @@ class AdminController extends AbstractController
      *  @IsGranted("ROLE_ADMIN", message="Vous n'avez pas l'autorisation d'accèder à cette page")
      * @Route("/admin/comment/{idComment}/change", name="admin_comments_change")
      */
-    public function changeCommentStatus(int $idComment, Request $request, EntityManagerInterface $entityManager)
+    public function changeCommentStatus(int $idComment, EntityManagerInterface $entityManager)
     {
+        $request = Request::createFromGlobals();
         $comment = $this->entityManager->getRepository(Comment::class)->find($idComment);
 
         if ($comment->getIsVerified() === true) {
@@ -130,10 +139,10 @@ class AdminController extends AbstractController
             'La vérification du commentaire à été modifié avec succès !'
         );
 
-        if (isset($_POST['trick'])) {
-            $url = '/admin/trick/' . $_POST['trick'] . '/comments';
-        } elseif (isset($_POST['user'])) {
-            $url = '/admin/users/' . $_POST['user'] . '/comments';
+        if ($request->get('trick') !== null) {
+            $url = '/admin/trick/' . $request->get('trick') . '/comments';
+        } elseif ($request->get('user') !== null) {
+            $url = '/admin/users/' . $request->get('user') . '/comments';
         }
 
         return $this->redirect($url);
@@ -395,10 +404,11 @@ class AdminController extends AbstractController
      */
     public function addGroup(Request $request, EntityManagerInterface $entityManager)
     {
+        $request = Request::createFromGlobals();
         $group = new Group();
 
-        if (isset($_GET['url'])) {
-            $url = "/trick/" . $_GET['url'] . "/edit";
+        if ($request->query->get('url') !== null) {
+            $url = "/trick/" . $request->query->get('url') . "/edit";
         } else {
             $url = '/trick/add';
         }
@@ -431,9 +441,11 @@ class AdminController extends AbstractController
      */
     public function displayGroup(GroupRepository $groupRepository): Response
     {
+        $request = Request::createFromGlobals();
+
         $nbTricks = $groupRepository->countAllGroups();
         $nbPages = $groupRepository->getNbPagesGroups($nbTricks);
-        $page = $_GET['page'] ?? 1;
+        $page = $request->query->get('page') ?? 1;
         $groups = $groupRepository->getGroupsPages($page, $nbPages);
 
         return $this->render('admin/group.html.twig', [
