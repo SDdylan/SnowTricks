@@ -60,7 +60,10 @@
     {% endfor %}
     <article class="container">
         {# Section des images #}
-        <section class="row trick-medias">
+        <div class="row">
+            <button id="displayMedias" class="btn btn-primary col-4 offset-4" onclick="displayMedias()">Voir Médias</button>
+        </div>
+        <section id="mediasTrick" class="row trick-medias">
             {% for media in trick.media %}
                 <div class="col-sm-6 col-md-6 col-lg-4">
                     <div class="trick-media-col">
