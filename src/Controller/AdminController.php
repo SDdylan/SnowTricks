@@ -37,9 +37,9 @@ class AdminController extends AbstractController
      * @IsGranted("ROLE_ADMIN", message="Vous n'avez pas l'autorisation d'accèder à cette page")
      * @Route("/admin", name="app_admin")
      */
-    public function index(TrickRepository $trickRepository): Response
+    public function index(Request $request, TrickRepository $trickRepository): Response
     {
-        $request = Request::createFromGlobals();
+        //$request = Request::createFromGlobals();
 
         $nbTricks = $trickRepository->countAllTricks();
         $nbPages = $trickRepository->getNbPagesTricks($nbTricks);
@@ -57,9 +57,9 @@ class AdminController extends AbstractController
      * @IsGranted("ROLE_ADMIN", message="Vous n'avez pas l'autorisation d'accèder à cette page")
      * @Route("/admin/users", name="admin_users")
      */
-    public function usersAdmin(UserRepository $userRepository): Response
+    public function usersAdmin(Request $request, UserRepository $userRepository): Response
     {
-        $request = Request::createFromGlobals();
+        //$request = Request::createFromGlobals();
 
         $nbUsers = $userRepository->countAllUsers();
         $nbPages = $userRepository->getNbPagesUsers($nbUsers);
@@ -79,7 +79,7 @@ class AdminController extends AbstractController
      */
     public function userComments(int $idUser, Request $request, EntityManagerInterface $entityManager, CommentRepository $commentRepository): Response
     {
-        $request = Request::createFromGlobals();
+        //$request = Request::createFromGlobals();
 
         $user = $this->entityManager->getRepository(User::class)->find($idUser);
         $nbComments = $commentRepository->countCommentsByUser($user);
@@ -101,7 +101,7 @@ class AdminController extends AbstractController
      */
     public function tricksComments(int $idTrick, Request $request, EntityManagerInterface $entityManager, CommentRepository $commentRepository): Response
     {
-        $request = Request::createFromGlobals();
+        //$request = Request::createFromGlobals();
 
         $trick = $this->entityManager->getRepository(Trick::class)->find($idTrick);
         $nbComments = $commentRepository->countCommentsByTrick($trick);
@@ -121,9 +121,9 @@ class AdminController extends AbstractController
      *  @IsGranted("ROLE_ADMIN", message="Vous n'avez pas l'autorisation d'accèder à cette page")
      * @Route("/admin/comment/{idComment}/change", name="admin_comments_change")
      */
-    public function changeCommentStatus(int $idComment, EntityManagerInterface $entityManager)
+    public function changeCommentStatus(Request $request, int $idComment, EntityManagerInterface $entityManager)
     {
-        $request = Request::createFromGlobals();
+        //$request = Request::createFromGlobals();
         $page = '';
         if ($request->get('page') !== null) {
             $page = '?page=' . $request->get('page');
@@ -159,7 +159,6 @@ class AdminController extends AbstractController
      */
     public function changeUserStatus(int $idUser, Request $request, EntityManagerInterface $entityManager)
     {
-        $request = Request::createFromGlobals();
         $page = '';
         if ($request->get('page') !== null) {
             $page = '?page=' . $request->get('page');
@@ -414,7 +413,7 @@ class AdminController extends AbstractController
      */
     public function addGroup(Request $request, EntityManagerInterface $entityManager)
     {
-        $request = Request::createFromGlobals();
+        //$request = Request::createFromGlobals();
         $group = new Group();
 
         if ($request->query->get('url') !== null) {
@@ -449,9 +448,9 @@ class AdminController extends AbstractController
      * @Route("/admin/groups/", name="admin_group")
      * @IsGranted("ROLE_ADMIN")
      */
-    public function displayGroup(GroupRepository $groupRepository): Response
+    public function displayGroup(Request $request, GroupRepository $groupRepository): Response
     {
-        $request = Request::createFromGlobals();
+        //$request = Request::createFromGlobals();
 
         $nbTricks = $groupRepository->countAllGroups();
         $nbPages = $groupRepository->getNbPagesGroups($nbTricks);
