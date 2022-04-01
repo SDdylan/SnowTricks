@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f6192bbf-6758-4e89-a8a2-18dc09b0a008" name="Changes" comment="update test for .env DATABASE_URL for the symfony insight testing">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="f6192bbf-6758-4e89-a8a2-18dc09b0a008" name="Changes" comment="Added space at the end of .idea files">
+      <change afterPath="$PROJECT_DIR$/public/robots.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -266,7 +265,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648831726432</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Added space at the end of .idea files">
+      <created>1648832604683</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1648832604683</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -299,6 +305,7 @@
     <MESSAGE value="updated dependencies,&#10;deleted useless code&#10;added space at the end of each view." />
     <MESSAGE value="deleted useless code" />
     <MESSAGE value="update test for .env DATABASE_URL for the symfony insight testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="update test for .env DATABASE_URL for the symfony insight testing" />
+    <MESSAGE value="Added space at the end of .idea files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added space at the end of .idea files" />
   </component>
 </project>
