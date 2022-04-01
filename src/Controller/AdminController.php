@@ -39,8 +39,6 @@ class AdminController extends AbstractController
      */
     public function index(Request $request, TrickRepository $trickRepository): Response
     {
-        //$request = Request::createFromGlobals();
-
         $nbTricks = $trickRepository->countAllTricks();
         $nbPages = $trickRepository->getNbPagesTricks($nbTricks);
         $page = $request->query->get('page') ?? 1;
@@ -59,8 +57,6 @@ class AdminController extends AbstractController
      */
     public function usersAdmin(Request $request, UserRepository $userRepository): Response
     {
-        //$request = Request::createFromGlobals();
-
         $nbUsers = $userRepository->countAllUsers();
         $nbPages = $userRepository->getNbPagesUsers($nbUsers);
         $page = $request->query->get('page') ?? 1;
@@ -79,8 +75,6 @@ class AdminController extends AbstractController
      */
     public function userComments(int $idUser, Request $request, EntityManagerInterface $entityManager, CommentRepository $commentRepository): Response
     {
-        //$request = Request::createFromGlobals();
-
         $user = $this->entityManager->getRepository(User::class)->find($idUser);
         $nbComments = $commentRepository->countCommentsByUser($user);
         $nbPages = $commentRepository->getNbPagesComments($nbComments);
@@ -101,8 +95,6 @@ class AdminController extends AbstractController
      */
     public function tricksComments(int $idTrick, Request $request, EntityManagerInterface $entityManager, CommentRepository $commentRepository): Response
     {
-        //$request = Request::createFromGlobals();
-
         $trick = $this->entityManager->getRepository(Trick::class)->find($idTrick);
         $nbComments = $commentRepository->countCommentsByTrick($trick);
         $nbPages = $commentRepository->getNbPagesComments($nbComments);
@@ -123,7 +115,6 @@ class AdminController extends AbstractController
      */
     public function changeCommentStatus(Request $request, int $idComment, EntityManagerInterface $entityManager)
     {
-        //$request = Request::createFromGlobals();
         $page = '';
         if ($request->get('page') !== null) {
             $page = '?page=' . $request->get('page');
@@ -189,7 +180,6 @@ class AdminController extends AbstractController
     public function deleteTrick(int $idTrick, Request $request, EntityManagerInterface $entityManager)
     {
         $trick = $this->entityManager->getRepository(Trick::class)->findOneBy(['id' => $idTrick]);
-
 
         //Suppression de tout les media du trick
         foreach ($trick->getMedia() as $media)
@@ -311,7 +301,6 @@ class AdminController extends AbstractController
      */
     public function deleteMedia(int $idMedia, EntityManagerInterface $entityManager)
     {
-        //AJOUTER TRY CATCH
         $media = $this->entityManager->getRepository(Media::class)->find($idMedia);
         $trick = $media->getTrick();
         $typeMedia = $media->getType();
@@ -413,7 +402,6 @@ class AdminController extends AbstractController
      */
     public function addGroup(Request $request, EntityManagerInterface $entityManager)
     {
-        //$request = Request::createFromGlobals();
         $group = new Group();
 
         if ($request->query->get('url') !== null) {
@@ -450,8 +438,6 @@ class AdminController extends AbstractController
      */
     public function displayGroup(Request $request, GroupRepository $groupRepository): Response
     {
-        //$request = Request::createFromGlobals();
-
         $nbTricks = $groupRepository->countAllGroups();
         $nbPages = $groupRepository->getNbPagesGroups($nbTricks);
         $page = $request->query->get('page') ?? 1;
