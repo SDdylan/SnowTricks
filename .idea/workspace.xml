@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f6192bbf-6758-4e89-a8a2-18dc09b0a008" name="Changes" comment="Added button to display medias when on mobile display">
+    <list default="true" id="f6192bbf-6758-4e89-a8a2-18dc09b0a008" name="Changes" comment="Modified superglobal used.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/FrontController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FrontController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/CommentRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/CommentRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/admin_trick_comments.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/admin_trick_comments.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/admin_user_comments.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/admin_user_comments.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/admin_users.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/admin_users.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -219,7 +224,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648815374247</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Modified superglobal used.">
+      <created>1648817688084</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1648817688084</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -245,6 +257,7 @@
     <MESSAGE value="Added link to edit page in home.html.twig&#10;Editing and adding of Media now works &#10;Modified route to edit a media&#10;Corrected display of addMedia" />
     <MESSAGE value="- Added functions and views to add, edit &amp; delete Groups&#10;- Added GroupFormType.php&#10;- Replaced 'Date de modification' with 'Date de création' in admin_trick_comments.html.twig &amp; admin_user_comments.html.twig&#10;- Fixed paging link for some Views.&#10;- Corrected wording for some flash messages&#10;- Modified display of flash messages in all views which contains these&#10;- Renamed form CommentFormType.php&#10;- Changed label of fields in ChangePasswordFormType.php&#10;- getCommentsByTrickPages() in CommentRepository.php now use createQuery()&#10;- Deleted link to suppression of Trick on top &amp; added link to create a Group in edit_trick.html.twig&#10;- Added functions to page&#10;- Added paging on Comment for trick.html.twig and for Groups in group.html.twig&#10;- edit and delete Trick link only visible for a logged user in Front/home.html.twig&#10;- added link to manage Groups in Admin paginate Groups&#10;- Deleted index.html.twig in /Front" />
     <MESSAGE value="Added button to display medias when on mobile display" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added button to display medias when on mobile display" />
+    <MESSAGE value="Modified superglobal used." />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified superglobal used." />
   </component>
 </project>

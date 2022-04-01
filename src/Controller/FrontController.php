@@ -47,19 +47,16 @@ class FrontController extends AbstractController
     public function showTrick(string $slugTrick, int $idTrick, Request $request, EntityManagerInterface $entityManager,CommentRepository $commentRepository)
     {
         $trick = $this->entityManager->getRepository(Trick::class)->findOneBy(['id' => $idTrick]);
-        dump($trick);
 
         $comment = new Comment();
         $form = $this->createForm(CommentFormType::class, $comment);
         $form->handleRequest($request);
 
         //Comments & paging
-        $nbComments = $commentRepository->countCommentByTrick($trick);
+        $nbComments = $commentRepository->countCommentsByTrick($trick, true);
         $nbPages = $commentRepository->getNbPagesComments($nbComments);
         $page = $_GET['page'] ?? 1;
         $comments = $commentRepository->getCommentsByTrickPages($page, $nbPages, $idTrick, true);
-
-        dump($comments);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $comment->setIsVerified(0);

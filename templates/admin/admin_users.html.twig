@@ -113,6 +113,7 @@
                                             <form name="statusUser{{ user.id }}" method="POST" action="/admin/users/{{ user.id }}/change">
                                                 <button type="submit" class="btn btn-primary">Oui</button>
                                                 <input type="hidden" id="user-id" name="user-id" value="{{ user.id }}">
+                                                <input type="hidden" id="page" name="page" value="{{ currentPage }}">
                                             </form>
                                         </div>
                                     </div>

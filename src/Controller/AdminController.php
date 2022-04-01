@@ -82,7 +82,7 @@ class AdminController extends AbstractController
         $request = Request::createFromGlobals();
 
         $user = $this->entityManager->getRepository(User::class)->find($idUser);
-        $nbComments = $commentRepository->countCommentByUser($user);
+        $nbComments = $commentRepository->countCommentsByUser($user);
         $nbPages = $commentRepository->getNbPagesComments($nbComments);
         $page = $request->query->get('page') ?? 1;
         $comments = $commentRepository->getCommentsByUserPages($page, $nbPages, $idUser);
@@ -90,7 +90,8 @@ class AdminController extends AbstractController
         return $this->render('admin/admin_user_comments.html.twig', [
             'user' => $user,
             'nbPages' => $nbPages,
-            'currentPage' => $page
+            'currentPage' => $page,
+            'comments' => $comments
        ]);
     }
 
@@ -103,16 +104,16 @@ class AdminController extends AbstractController
         $request = Request::createFromGlobals();
 
         $trick = $this->entityManager->getRepository(Trick::class)->find($idTrick);
-        $nbComments = $commentRepository->countCommentByTrick($trick);
+        $nbComments = $commentRepository->countCommentsByTrick($trick);
         $nbPages = $commentRepository->getNbPagesComments($nbComments);
         $page = $request->query->get('page') ?? 1;
         $comments = $commentRepository->getCommentsByTrickPages($page, $nbPages, $idTrick);
 
-
         return $this->render('admin/admin_trick_comments.html.twig', [
             'trick' => $trick,
             'nbPages' => $nbPages,
-            'currentPage' => $page
+            'currentPage' => $page,
+            'comments' => $comments
         ]);
     }
 
@@ -123,6 +124,10 @@ class AdminController extends AbstractController
     public function changeCommentStatus(int $idComment, EntityManagerInterface $entityManager)
     {
         $request = Request::createFromGlobals();
+        $page = '';
+        if ($request->get('page') !== null) {
+            $page = '?page=' . $request->get('page');
+        }
         $comment = $this->entityManager->getRepository(Comment::class)->find($idComment);
 
         if ($comment->getIsVerified() === true) {
@@ -140,9 +145,9 @@ class AdminController extends AbstractController
         );
 
         if ($request->get('trick') !== null) {
-            $url = '/admin/trick/' . $request->get('trick') . '/comments';
+            $url = '/admin/trick/' . $request->get('trick') . '/comments' . $page;
         } elseif ($request->get('user') !== null) {
-            $url = '/admin/users/' . $request->get('user') . '/comments';
+            $url = '/admin/users/' . $request->get('user') . '/comments' . $page;
         }
 
         return $this->redirect($url);
@@ -154,6 +159,11 @@ class AdminController extends AbstractController
      */
     public function changeUserStatus(int $idUser, Request $request, EntityManagerInterface $entityManager)
     {
+        $request = Request::createFromGlobals();
+        $page = '';
+        if ($request->get('page') !== null) {
+            $page = '?page=' . $request->get('page');
+        }
         $user = $this->entityManager->getRepository(User::class)->find($idUser);
 
         if (in_array('ROLE_ADMIN', $user->getRoles())) {
@@ -170,7 +180,7 @@ class AdminController extends AbstractController
             "Le rôle de l'utilisateur " . $user->getUsername() . " à été modifié avec succès !"
         );
 
-        return $this->redirectToRoute('admin_users');
+        return $this->redirect('/admin/users' . $page);
     }
 
     /**

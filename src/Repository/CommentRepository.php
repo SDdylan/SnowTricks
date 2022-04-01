@@ -6,7 +6,10 @@ use App\Entity\Comment;
 use App\Entity\Trick;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\Persistence\ManagerRegistry;
+use phpDocumentor\Reflection\Types\This;
 
 /**
  * @method Comment|null find($id, $lockMode = null, $lockVersion = null)
@@ -50,26 +53,33 @@ class CommentRepository extends ServiceEntityRepository
     }
     */
 
-    public function countCommentByUser(User $user)
+    public function countCommentsByUser(User $user)
     {
-        return $this->createQueryBuilder('c')
-            ->select('count(c.id)')
-            ->andWhere('c.user = :val')
-            ->setParameter('val', $user)
-            ->getQuery()
-            ->getSingleScalarResult()
-            ;
+        try {
+            return $this->createQueryBuilder('c')
+                ->select('count(c.id)')
+                ->andWhere('c.user = :val')
+                ->setParameter('val', $user)
+                ->getQuery()
+                ->getSingleScalarResult();
+        } catch (NoResultException | NonUniqueResultException $e) {
+        }
     }
 
-    public function countCommentByTrick(Trick $trick)
+    public function countCommentsByTrick(Trick $trick, bool $isVerified = false)
     {
-        return $this->createQueryBuilder('c')
-            ->select('count(c.id)')
-            ->where('c.trick = :val')
-            ->setParameter('val', $trick)
-            ->getQuery()
-            ->getSingleScalarResult()
-            ;
+        $query = $this->createQueryBuilder('c')
+                        ->select('count(c.id)')
+                        ->where('c.trick = :val')
+                        ->setParameter('val', $trick);
+        if ($isVerified === true) {
+            $query = $query->andWhere('c.isVerified = true');
+        }
+        try {
+            return $query->getQuery()->getSingleScalarResult();
+        } catch (NoResultException | NonUniqueResultException $e) {
+
+        }
     }
 
     public static function getNbPagesComments($nbComments) : int
@@ -110,25 +120,41 @@ class CommentRepository extends ServiceEntityRepository
      */
     public function getCommentsByTrickPages(int $nbPages = 1, int $nbComments, int $idTrick, bool $isVerified = false): array
     {
-        $verified = $isVerified === true ? ' AND c.isVerified = true' : '';
-        $entityManager = $this->getEntityManager();
         if ($nbComments > $nbPages*10) {
             if ($nbPages === 1) {
-                $query = $entityManager->createQuery("SELECT c FROM App\Entity\Comment c WHERE c.trick = :t_id" . $verified . " ORDER BY c.createdAt DESC")
-                                        ->setParameter('t_id', $idTrick)
-                                        ->setMaxResults(10);
+                $query = $this->createQueryBuilder('c')
+                                ->select('c')
+                                ->where('c.trick = :t_id')
+                                ->setParameter('t_id', $idTrick)
+                                ->orderBy('c.createdAt', 'DESC')
+                                ->setMaxResults(10);
+                if ($isVerified === true) {
+                    $query = $query->andWhere('c.isVerified = true');
+                }
             } elseif ($nbPages > 1) {
-                $query = $entityManager->createQuery("SELECT c FROM App\Entity\Comment c WHERE c.trick = :t_id" . $verified . " ORDER BY c.created_at DESC")
-                                        ->setParameter('t_id', $idTrick)
-                                        ->setFirstResult(($nbPages-1)*10)
-                                        ->setMaxResults(10);
+                $query = $this->createQueryBuilder('c')
+                    ->select('c')
+                    ->where('c.trick = :t_id')
+                    ->setParameter('t_id', $idTrick)
+                    ->orderBy('c.createdAt', 'DESC')
+                    ->setFirstResult(($nbPages-1)*10)
+                    ->setMaxResults(10);
+                if ($isVerified === true) {
+                    $query = $query->andWhere('c.isVerified = true');
+                }
             }
         } else {
-            $query = $entityManager->createQuery( "SELECT c FROM App\Entity\Comment c WHERE c.trick = :t_id" . $verified . " ORDER BY c.createdAt DESC")
-                                    ->setParameter('t_id', $idTrick)
-                                    ->setFirstResult(($nbPages-1)*10)
-                                    ->setMaxResults(10);
+            $query = $this->createQueryBuilder('c')
+                ->select('c')
+                ->where('c.trick = :t_id')
+                ->setParameter('t_id', $idTrick)
+                ->orderBy('c.createdAt', 'DESC')
+                ->setFirstResult(($nbPages-1)*10)
+                ->setMaxResults(10);
+            if ($isVerified === true) {
+                $query = $query->andWhere('c.isVerified = true');
+            }
         }
-        return $query->getResult();
+        return $query->getQuery()->getResult();
     }
 }

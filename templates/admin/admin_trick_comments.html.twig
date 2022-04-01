@@ -30,7 +30,7 @@
                     <ul class="pagination justify-content-center" style="width: 50%">
                         {% if currentPage != 1 %}
                             <li class="page-item">
-                                <a class="page-link" href="/admin/trick/{{ trick.id }}/comments?page_user={{ currentPage-1 }}" aria-label="Previous">
+                                <a class="page-link" href="/admin/trick/{{ trick.id }}/comments?page={{ currentPage-1 }}" aria-label="Previous">
                                     <span aria-hidden="true">&laquo;</span>
                                     <span class="sr-only">Previous</span>
                                 </a>
@@ -52,20 +52,20 @@
                             {% elseif 0 > (currentPage + nearbyPagesLimit) - loop.index %} {# tout cacher après #}
                             {% else %}
                                 <li {% if currentPage == loop.index  %} class="active page-item"{% endif %}>
-                                    <a class="page-link" href="/admin/trick/{{ trick.id }}/comments?page_user={{ loop.index }}">{{ loop.index }}</a>
+                                    <a class="page-link" href="/admin/trick/{{ trick.id }}/comments?page={{ loop.index }}">{{ loop.index }}</a>
                                 </li>
                             {% endif %}
                         {% endfor %}
                         {% if currentPage != nbPages %}
                             <li class="page-item">
-                                <a class="page-link" href="/admin/trick/{{ trick.id }}/comments?page_user={{ currentPage+1 }}" aria-label="Next">
+                                <a class="page-link" href="/admin/trick/{{ trick.id }}/comments?page={{ currentPage+1 }}" aria-label="Next">
                                     <span aria-hidden="true">&raquo;</span>
                                     <span class="sr-only">Next</span>
                                 </a>
                             </li>
                         {% else %}
                             <li class="page-item">
-                                <a class="page-link" href="/admin/trick/{{ trick.id }}/comments?page_user={{ currentPage}}" aria-label="Next" disabled="disabled">
+                                <a class="page-link" href="/admin/trick/{{ trick.id }}/comments?page={{ currentPage}}" aria-label="Next" disabled="disabled">
                                     <span aria-hidden="true">&raquo;</span>
                                     <span class="sr-only">Next</span>
                                 </a>
@@ -82,7 +82,7 @@
                     <td><p><strong>Date de création</strong></p></td>
                     <td><p><strong>Statut</strong></p></td>
                 </tr>
-                {% for comment in trick.comments %}
+                {% for comment in comments %}
                     <tr>
                         <td><p>{{ comment.user.username }}</p></td>
                         <td><p>{{ comment.content }}</p></td>
@@ -106,6 +106,7 @@
                                             <form name="statusComment{{ comment.id }}" method="POST" action="/admin/comment/{{ comment.id }}/change">
                                                 <button type="submit" class="btn btn-primary">Oui</button>
                                                 <input type="hidden" id="trick" name="trick" value="{{ trick.id }}">
+                                                <input type="hidden" id="page" name="page" value="{{ currentPage }}">
                                             </form>
                                         </div>
                                     </div>
