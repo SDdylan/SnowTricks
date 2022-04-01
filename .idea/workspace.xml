@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f6192bbf-6758-4e89-a8a2-18dc09b0a008" name="Changes" comment="deleted useless code">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+    <list default="true" id="f6192bbf-6758-4e89-a8a2-18dc09b0a008" name="Changes" comment="update test for .env DATABASE_URL for the symfony insight testing">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -259,7 +259,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648830756104</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="update test for .env DATABASE_URL for the symfony insight testing">
+      <created>1648831726432</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1648831726432</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -291,6 +298,7 @@
     <MESSAGE value="deleted useless code in AdminController.php &amp; FrontController.php no longer use superglobals." />
     <MESSAGE value="updated dependencies,&#10;deleted useless code&#10;added space at the end of each view." />
     <MESSAGE value="deleted useless code" />
-    <option name="LAST_COMMIT_MESSAGE" value="deleted useless code" />
+    <MESSAGE value="update test for .env DATABASE_URL for the symfony insight testing" />
+    <option name="LAST_COMMIT_MESSAGE" value="update test for .env DATABASE_URL for the symfony insight testing" />
   </component>
 </project>
