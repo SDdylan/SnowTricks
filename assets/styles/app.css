@@ -76,9 +76,14 @@
         scroll-behavior: smooth;
     }
 }
+/*html {
+    min-height: 100vh;
+    margin: 0;
+}*/
 
 body {
-    margin: 0;
+    /*height: 100%;
+    margin: 0;*/
     font-family: var(--bs-body-font-family);
     font-size: var(--bs-body-font-size);
     font-weight: var(--bs-body-font-weight);
@@ -11288,17 +11293,191 @@ textarea.form-control-lg {
     }
 }
 
+#register, #login, #password, #formTrick, #formMedia, #formGroup {
+    /*background-image: url('https://static.seetheworld.com/image_uploader/photos/14/original/great-pre-season-snow-conditions-in-curchevel-courchevel-valley.jpg');
+    background: no-repeat center center;
+    background-size: cover;
+    background-attachment: scroll;*/
+    background-position: center;
+}
+
+#register-title, #login-title, #password-title, #form-title {
+    text-align: center;
+    padding-top: 2em;
+    padding-bottom: 1em ;
+}
+
+#register-subtitle {
+    font-size: 1.2em;
+    padding-bottom: 1em;
+}
+
+#btn-register, #btn-login, #btn-password, #btn-form {
+    text-align: center;
+    margin-bottom: 1em;
+    margin-top: 2em;
+}
+
+.form-register, .form-login, .form-password, .reset-password-text, .form-trick, .form-media {
+    border-style: none
+}
+
+#register-login, #forgot-password {
+    margin-bottom: 2em;
+    margin-top: 2em;
+    text-align: center;
+}
+
+.login-connected {
+    text-align: center;
+}
+
+.home-card {
+    max-height: 100px;
+    max-width: 150px;
+}
+
+.tricks-home {
+    margin-bottom: 20px;
+}
+
+#hidden-tricks {
+    display: none
+}
+
+#arrow-up {
+    display: none
+}
+
+.card-home {
+    width: 22rem;
+    text-align: left
+}
+
 .bg-image-full {
     background-repeat: no-repeat;
     background-attachment: scroll;
     background-position: center;
     background-size: cover;
-    /*position: relative;
-    margin-bottom: 3rem;
-    padding-top: calc(8rem + 57px);
-    padding-bottom: 8rem;
-    background: no-repeat center center;
-    background-color: #6c757d;
-    background-size: cover;
-    background-attachment: scroll;*/
+    height: 50em;
+}
+
+.cross {
+    color: red;
+}
+
+.edit {
+    color: black;
+}
+
+#flash-delete-trick {
+    text-align: center;
+}
+
+.trick-medias {
+    text-align: center;
+    margin-top: 3em;
+}
+
+.trick-media-col {
+    border: 2em;
+    border: black;
+
+}
+
+.trick-media {
+    max-width: 300px;
+}
+
+.comment {
+    margin-bottom: 3em;
+}
+
+#btn-comment {
+    margin-bottom: auto;
+    margin-top: auto;
+}
+
+#content-trick {
+    margin-top: 5em;
+    margin-left: 3em;
+    margin-right: 3em;
+    margin-bottom: 3em;
+}
+
+#description-trick {
+    margin-bottom: 3em;
+}
+
+#end-content-trick {
+    text-align: center;
+}
+
+@media (max-width: 576px) {
+    .bg-image-full {
+        height: 35em;
+    }
+
+    .card-home {
+        height: 28rem;
+    }
+
+    #mediasTrick {
+        display: none;
+    }
+    #displayMedias {
+        margin-top: 2em;
+    }
+}
+
+@media (min-width: 576px) {
+    .bg-image-full {
+        height: 30em;
+    }
+    .card-home {
+        height: 28rem;
+    }
+
+    #displayMedias {
+        display: none;
+    }
+
+}
+@media (min-width: 768px) {
+    .bg-image-full {
+        height: 35em;
+    }
+
+}
+@media (min-width: 992px) {
+    .bg-image-full {
+        height: 40em;
+    }
+
+    .card-home {
+        height: 19rem;
+    }
+
+    .form-register, .form-login, .form-password, .reset-password-text, .form-trick, .form-media {
+        width: 45%;
+        height: 110%;
+    }
+}
+@media (min-width: 1200px) {
+    .bg-image-full {
+        height: 40em;
+    }
+
+    .card-home {
+        height: 20rem;
+    }
+}
+@media (min-width: 1400px) {
+    .bg-image-full {
+        height: 45em;
+    }
+
+    .card-home {
+        height: 28rem;
+    }
 }
