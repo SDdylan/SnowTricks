@@ -21,13 +21,13 @@ class ChangePasswordFormType extends AbstractType
                     'attr' => ['autocomplete' => 'new-password'],
                     'constraints' => [
                         new NotBlank([
-                            'message' => 'Please enter a password',
+                            'message' => 'Veuillez entrer un nouveau mot de passe',
                         ]),
                         new Length([
-                            'min' => 6,
-                            'minMessage' => 'Your password should be at least {{ limit }} characters',
+                            'min' => 8,
+                            'minMessage' => 'Votre mot de passe doit faire au moins 8 caractères.',
                             // max length allowed by Symfony for security reasons
-                            'max' => 4096,
+                            'max' => 255,
                         ]),
                     ],
                     'label' => 'Nouveau mot de passe',
