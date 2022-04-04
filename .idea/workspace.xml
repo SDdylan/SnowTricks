@@ -4,17 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f6192bbf-6758-4e89-a8a2-18dc09b0a008" name="Changes" comment="deleted useless code in UserChecker.php">
-      <change afterPath="$PROJECT_DIR$/assets/img/home.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/img/img1.jpg" afterDir="false" />
+    <list default="true" id="f6192bbf-6758-4e89-a8a2-18dc09b0a008" name="Changes" comment="Deleted useless img file&#10;Updated assets directory to make a correct Encore build">
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/img2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/styles/app.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/front/home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front/home.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -318,7 +309,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649074127326</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Deleted useless img file&#10;Updated assets directory to make a correct Encore build">
+      <created>1649086843917</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1649086843917</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -356,6 +354,7 @@
     <MESSAGE value="updated gitignore" />
     <MESSAGE value="added site.webmanifest" />
     <MESSAGE value="deleted useless code in UserChecker.php" />
-    <option name="LAST_COMMIT_MESSAGE" value="deleted useless code in UserChecker.php" />
+    <MESSAGE value="Deleted useless img file&#10;Updated assets directory to make a correct Encore build" />
+    <option name="LAST_COMMIT_MESSAGE" value="Deleted useless img file&#10;Updated assets directory to make a correct Encore build" />
   </component>
 </project>
