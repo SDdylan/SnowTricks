@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Ajout Media{% endblock %}
+{% block title %}Ajout Groupe{% endblock %}
 
 {% form_theme form 'bootstrap_5_layout.html.twig' %}
 
@@ -8,26 +8,25 @@
     <div id="formMedia">
         <section>
             <div id="form-title">
-                <h1>Ajout de Media</h1><br>
-                <h2>{{ trick.title }}</h2>
+                <h1>Ajout de Groupe</h1>
             </div>
             {{ form_start(form) }}
             <div class="container form-control form-trick" style="background: none; height: max-content">
-                {{  form_row(form.url, {'attr': {'label': "Lien URL"}}) }}
-                {{  form_row(form.type, {'attr': {'label': "Type"}}) }}
+                {{  form_row(form.title, {'attr': {'label': "Nom de Groupe"}}) }}
+                {{  form_row(form.description, {'attr': {'label': "Description"}}) }}
                 <div id="btn-form">
-                    <a class="btn btn-secondary" href="/trick/{{ trick.id }}-{{ trick.slug }}/edit" role="button">Retour</a>
-                    <button type="button" data-bs-toggle="modal" data-bs-target="#modalMedia" class="btn btn-primary">Enregistrer</button>
+{#                    <a class="btn btn-secondary" href="/trick/{{ trick.id }}-{{ trick.slug }}/edit" role="button">Retour</a>#}
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#modal" class="btn btn-primary">Enregistrer</button>
                     {# Modal pour confirmer la modification du media #}
-                    <div class="modal fade" id="modalMedia" tabindex="-1" aria-labelledby="modalLabelMedia" aria-hidden="true">
+                    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="modalLabelMedia">Ajout de Média</h5>
+                                    <h5 class="modal-title" id="modalLabel">Ajout de Groupe</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <p>Êtes-vous sur de vouloir ajouter ce média ?</p>
+                                    <p>Êtes-vous sur de vouloir ajouter ce groupe ?</p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>

@@ -14,8 +14,11 @@
     <hr class="my-4">
     <div class="container px-4 px-lg-5">
         <div class="row justify-content-center">
-            <div class="col-sm-4 text-center">
+            <div class="col-sm-4 text-center" style="margin-bottom: 1em">
                 <a href="/trick/new"  class="justify-content-center btn btn-primary fw-bold">Ajouter Figure</a>
+            </div>
+            <div class="col-sm-4 text-center">
+                <a href="/admin/groups"  class="justify-content-center btn btn-primary fw-bold">Gestion Groupes</a>
             </div>
             <div class="col-sm-4 text-center">
                 <a href="/admin/users"  class="justify-content-center btn btn-primary fw-bold">Gestion Utilisateurs</a>
@@ -81,7 +84,7 @@
                 {% for trick in tricks %}
                     <tr>
                         <td>{{ trick.title }}</td>
-                        <td>{{ trick.modified_at | date('d/m/Y') }}</td>
+                        <td>{{ trick.modifiedAt | date('d/m/Y') }}</td>
                         <td><a class="btn btn-primary btn-sm text-uppercase" href="admin/trick/{{ trick.id }}/comments">commentaires</a></td>
                         <td><a class="btn btn-primary btn-sm text-uppercase" href="/trick/{{ trick.id }}-{{ trick.slug }}/edit">éditer</a></td>
                         <td>

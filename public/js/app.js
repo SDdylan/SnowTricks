@@ -22,6 +22,13 @@ function displayTricks() {
     }
 }
 
+function displayMedias() {
+    const medias = document.getElementById('mediasTrick');
+    const button = document.getElementById('displayMedias');
+    medias.style.display = 'block';
+    button.style.display = 'none';
+}
+
 //add new items (media form)
 const addFormToCollection = (e) => {
     const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);

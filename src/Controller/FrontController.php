@@ -4,8 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Entity\Trick;
-use App\Form\CommentType;
+use App\Form\CommentFormType;
 use App\Form\RegistrationFormType;
+use App\Repository\CommentRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -43,14 +44,19 @@ class FrontController extends AbstractController
     /**
      * @Route ("/trick/{idTrick}-{slugTrick}", name="trick_details")
      */
-    public function showTrick(string $slugTrick, int $idTrick, Request $request, EntityManagerInterface $entityManager)
+    public function showTrick(string $slugTrick, int $idTrick, Request $request, EntityManagerInterface $entityManager,CommentRepository $commentRepository)
     {
         $trick = $this->entityManager->getRepository(Trick::class)->findOneBy(['id' => $idTrick]);
-        dump($trick);
 
         $comment = new Comment();
-        $form = $this->createForm(CommentType::class, $comment);
+        $form = $this->createForm(CommentFormType::class, $comment);
         $form->handleRequest($request);
+
+        //Comments & paging
+        $nbComments = $commentRepository->countCommentsByTrick($trick, true);
+        $nbPages = $commentRepository->getNbPagesComments($nbComments);
+        $page = $request->query->get('page') ?? 1;
+        $comments = $commentRepository->getCommentsByTrickPages($page, $nbPages, $idTrick, true);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $comment->setIsVerified(0);
@@ -64,7 +70,7 @@ class FrontController extends AbstractController
             unset($comment);
 
             $this->addFlash(
-                'notice',
+                'success',
                 'Votre commentaire à été envoyé, il sera traité dans les plus brefs délais.'
             );
 
@@ -74,6 +80,9 @@ class FrontController extends AbstractController
         return $this->render('front/trick.html.twig', [
             'trick' => $trick,
             'commentForm' => $form->createView(),
+            'nbPages' => $nbPages,
+            'currentPage' => $page,
+            'comments' => $comments
         ]);
     }
 }

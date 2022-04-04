@@ -4,17 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f6192bbf-6758-4e89-a8a2-18dc09b0a008" name="Changes" comment="Added link to edit page in home.html.twig&#10;Editing and adding of Media now works &#10;Modified route to edit a media&#10;Corrected display of addMedia">
-      <change afterPath="$PROJECT_DIR$/templates/admin/admin_trick_comments.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/admin_user_comments.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/CommentRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/CommentRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/TrickRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/TrickRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/UserRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/front/trick.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front/trick.html.twig" afterDir="false" />
+    <list default="true" id="f6192bbf-6758-4e89-a8a2-18dc09b0a008" name="Changes" comment="Deleted useless img file&#10;Updated assets directory to make a correct Encore build">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +18,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -154,12 +153,21 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Dylou\PhpstormProjects\Projet6\assets" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Dylou\PhpstormProjects\Projet6\public" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -179,6 +187,8 @@
       <workItem from="1648046902143" duration="137000" />
       <workItem from="1648201964837" duration="5010000" />
       <workItem from="1648548581911" duration="574000" />
+      <workItem from="1648628848714" duration="22722000" />
+      <workItem from="1648729755627" duration="4482000" />
     </task>
     <task id="LOCAL-00001" summary="deleted local env var in .env (now use a .env.local.php made with composer dump-env)&#10;updated css on the base template to have the footer always on the bottom of the screen, even on page without much content.&#10;updated all twig views for the password reset.">
       <created>1647446437858</created>
@@ -201,7 +211,112 @@
       <option name="project" value="LOCAL" />
       <updated>1648042460497</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="- Added functions and views to add, edit &amp; delete Groups&#10;- Added GroupFormType.php&#10;- Replaced 'Date de modification' with 'Date de création' in admin_trick_comments.html.twig &amp; admin_user_comments.html.twig&#10;- Fixed paging link for some Views.&#10;- Corrected wording for some flash messages&#10;- Modified display of flash messages in all views which contains these&#10;- Renamed form CommentFormType.php&#10;- Changed label of fields in ChangePasswordFormType.php&#10;- getCommentsByTrickPages() in CommentRepository.php now use createQuery()&#10;- Deleted link to suppression of Trick on top &amp; added link to create a Group in edit_trick.html.twig&#10;- Added functions to page&#10;- Added paging on Comment for trick.html.twig and for Groups in group.html.twig&#10;- edit and delete Trick link only visible for a logged user in Front/home.html.twig&#10;- added link to manage Groups in Admin paginate Groups&#10;- Deleted index.html.twig in /Front">
+      <created>1648730994898</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1648730994898</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added button to display medias when on mobile display">
+      <created>1648815374247</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1648815374247</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Modified superglobal used.">
+      <created>1648817688084</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1648817688084</updated>
+    </task>
+    <task id="LOCAL-00007" summary=" - Modified getCommentByTrickPages() in CommentRepository.php to now use createQueryBuilder rather than createQuery. There is less risk of code injection now.&#10; - Modified countCommentByTrick to count only verified Comments for the display of a Trick.&#10; - Added try catch in countCommentsByTrick() &amp; countCommentsByUser() in case of errors.&#10; - Corrected paging for admin_user_comments.html.twig, admin_trick_comments.html.twig &amp; admin_users.html.twig&#10; - deleted useless dump() in FrontController.php">
+      <created>1648824297559</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1648824297559</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Request are now part of the functions parameters on AdminController.php">
+      <created>1648825023776</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1648825023776</updated>
+    </task>
+    <task id="LOCAL-00009" summary="deleted useless code in AdminController.php &amp; FrontController.php no longer use superglobals.">
+      <created>1648825294692</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1648825294692</updated>
+    </task>
+    <task id="LOCAL-00010" summary="updated dependencies,&#10;deleted useless code&#10;added space at the end of each view.">
+      <created>1648828952804</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1648828952804</updated>
+    </task>
+    <task id="LOCAL-00011" summary="deleted useless code">
+      <created>1648830756104</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1648830756104</updated>
+    </task>
+    <task id="LOCAL-00012" summary="update test for .env DATABASE_URL for the symfony insight testing">
+      <created>1648831726432</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1648831726432</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Added space at the end of .idea files">
+      <created>1648832604683</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1648832604683</updated>
+    </task>
+    <task id="LOCAL-00014" summary="added robots.txt as suggested by symfony insight">
+      <created>1648834834185</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1648834834185</updated>
+    </task>
+    <task id="LOCAL-00015" summary="updated gitignore">
+      <created>1648835357534</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1648835357534</updated>
+    </task>
+    <task id="LOCAL-00016" summary="added site.webmanifest">
+      <created>1648836163526</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1648836163526</updated>
+    </task>
+    <task id="LOCAL-00017" summary="deleted useless code in UserChecker.php">
+      <created>1649074127326</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1649074127326</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Deleted useless img file&#10;Updated assets directory to make a correct Encore build">
+      <created>1649086843917</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1649086843917</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -225,6 +340,21 @@
     <MESSAGE value="added Form for Media and Trick entities. (Media can be added directly on Trick form)&#10;Added addTrick() function in AdminController.php that redirect to add_trick route&#10;Added add_trick.html.twig View&#10;Added new function to add and remove Medias Form on Trick Form in app.js&#10;Deleted useless code in CommentType.php and SecurityController.php&#10;Modified display of flash messages in home.html.twig&#10;Added unicity constraint on title field of Trick.php&#10;&#10;Added link to add trick in base.html.twig and modified body class if on route trick_details" />
     <MESSAGE value="Added functions on AdminController.php and Views :&#10;- editTrick() (edit_trick.html.twig)&#10;- deleteMedia() (no view)&#10;- editMedia() (edit_media.html.twig)&#10;- addMedia() (add_media.html.twig)&#10;Added edit_trick to the pages with different body classes&#10;Added '$trick-&gt;removeMedium($media);' on deleteTrick() for safety&#10;Added link to edit page on trick page&#10;Added addEventListener on TrickFormType.php to only add media on new Trick Form.&#10;&#10;@TODO: finish if Form is valid &amp; submitted part on editMedia() &amp; addMedia()&#10;@TODO: Vertical align on &quot;Add Media&quot; on edit_trick.html.twig&#10;@TODO: correct the css and general display of the page." />
     <MESSAGE value="Added link to edit page in home.html.twig&#10;Editing and adding of Media now works &#10;Modified route to edit a media&#10;Corrected display of addMedia" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added link to edit page in home.html.twig&#10;Editing and adding of Media now works &#10;Modified route to edit a media&#10;Corrected display of addMedia" />
+    <MESSAGE value="- Added functions and views to add, edit &amp; delete Groups&#10;- Added GroupFormType.php&#10;- Replaced 'Date de modification' with 'Date de création' in admin_trick_comments.html.twig &amp; admin_user_comments.html.twig&#10;- Fixed paging link for some Views.&#10;- Corrected wording for some flash messages&#10;- Modified display of flash messages in all views which contains these&#10;- Renamed form CommentFormType.php&#10;- Changed label of fields in ChangePasswordFormType.php&#10;- getCommentsByTrickPages() in CommentRepository.php now use createQuery()&#10;- Deleted link to suppression of Trick on top &amp; added link to create a Group in edit_trick.html.twig&#10;- Added functions to page&#10;- Added paging on Comment for trick.html.twig and for Groups in group.html.twig&#10;- edit and delete Trick link only visible for a logged user in Front/home.html.twig&#10;- added link to manage Groups in Admin paginate Groups&#10;- Deleted index.html.twig in /Front" />
+    <MESSAGE value="Added button to display medias when on mobile display" />
+    <MESSAGE value="Modified superglobal used." />
+    <MESSAGE value=" - Modified getCommentByTrickPages() in CommentRepository.php to now use createQueryBuilder rather than createQuery. There is less risk of code injection now.&#10; - Modified countCommentByTrick to count only verified Comments for the display of a Trick.&#10; - Added try catch in countCommentsByTrick() &amp; countCommentsByUser() in case of errors.&#10; - Corrected paging for admin_user_comments.html.twig, admin_trick_comments.html.twig &amp; admin_users.html.twig&#10; - deleted useless dump() in FrontController.php" />
+    <MESSAGE value="Request are now part of the functions parameters on AdminController.php" />
+    <MESSAGE value="deleted useless code in AdminController.php &amp; FrontController.php no longer use superglobals." />
+    <MESSAGE value="updated dependencies,&#10;deleted useless code&#10;added space at the end of each view." />
+    <MESSAGE value="deleted useless code" />
+    <MESSAGE value="update test for .env DATABASE_URL for the symfony insight testing" />
+    <MESSAGE value="Added space at the end of .idea files" />
+    <MESSAGE value="added robots.txt as suggested by symfony insight" />
+    <MESSAGE value="updated gitignore" />
+    <MESSAGE value="added site.webmanifest" />
+    <MESSAGE value="deleted useless code in UserChecker.php" />
+    <MESSAGE value="Deleted useless img file&#10;Updated assets directory to make a correct Encore build" />
+    <option name="LAST_COMMIT_MESSAGE" value="Deleted useless img file&#10;Updated assets directory to make a correct Encore build" />
   </component>
 </project>

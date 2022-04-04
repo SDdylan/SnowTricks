@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block header %}
-    <!-- Header - set the background image for the header in the line below  assets/img/img1.jpg -->
-    <header class="py-1 bg-image-full d-flex">
+    <!-- Header - set the background image for the header in the line below -->
+    <header class="py-1 bg-image-full d-flex" style="background-image: url('{{ asset('img/home.jpeg') }}');">
         <div class="container position-relative px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7" style="margin-top: 15em">
@@ -21,6 +21,12 @@
 {% endblock %}
 
 {% block body %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
     {# la valeur de i correspond à la position du trick dans le Array $tricks #}
     <!-- Content section-->
     <section id="tricks" class="py-5">
@@ -36,26 +42,28 @@
                             {% endif %}
                             <div class="card-body row">
                                 <a class="col-8" href="/trick/{{ trick.id }}-{{ trick.slug }}">{{ trick.title }}</a>
-                                <a class="col-2 edit" href="/trick/{{ trick.id }}-{{ trick.slug }}/edit"><i class="fas fa-pen"></i></a>
-                                <a class="col-2 cross" data-bs-toggle="modal" data-bs-target="#modalTrick{{ trick.id }}"><i class="fa fa-times" ></i></a>
-                                {# Modal pour confirmer la supression du trick #}
-                                <div class="modal fade" id="modalTrick{{ trick.id }}" tabindex="-1" aria-labelledby="modalLabel{{ trick.id }}" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="modalLabel{{ trick.id }}">Modification d'Article</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p>Êtes-vous sur de vouloir supprimer le trick <strong>{{ trick.title }}</strong> ?</p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
-                                                <a class="btn btn-primary" href="/trick/delete/{{ trick.id }}" role="button">Oui</a>
+                                {% if app.user %}
+                                    <a class="col-2 edit" href="/trick/{{ trick.id }}-{{ trick.slug }}/edit"><i class="fas fa-pen"></i></a>
+                                    <a class="col-2 cross" data-bs-toggle="modal" data-bs-target="#modalTrick{{ trick.id }}"><i class="fa fa-times" ></i></a>
+                                    {# Modal pour confirmer la supression du trick #}
+                                    <div class="modal fade" id="modalTrick{{ trick.id }}" tabindex="-1" aria-labelledby="modalLabel{{ trick.id }}" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalLabel{{ trick.id }}">Modification d'Article</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Êtes-vous sur de vouloir supprimer le trick <strong>{{ trick.title }}</strong> ?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
+                                                    <a class="btn btn-primary" href="/trick/delete/{{ trick.id }}" role="button">Oui</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -73,26 +81,28 @@
                                     {% endif %}
                                     <div class="card-body row">
                                         <a class="col-8" href="/trick/{{ trick.id }}-{{ trick.slug }}">{{ trick.title }}</a>
-                                        <a class="col-2 edit" href="/trick/{{ trick.id }}-{{ trick.slug }}/edit"><i class="fas fa-pen"></i></a>
-                                        <a class="col-2 cross" data-bs-toggle="modal" data-bs-target="#modalTrick{{ trick.id }}"><i class="fa fa-times" ></i></a>
-                                        {# Modal pour confirmer la supression du trick #}
-                                        <div class="modal fade" id="modalTrick{{ trick.id }}" tabindex="-1" aria-labelledby="modalLabel{{ trick.id }}" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="modalLabel{{ trick.id }}">Modification d'Article</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p>Êtes-vous sur de vouloir supprimer le trick <strong>{{ trick.title }}</strong> ?</p>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
-                                                        <a class="btn btn-primary" href="/trick/delete/{{ trick.id }}" role="button">Oui</a>
+                                        {% if app.user %}
+                                            <a class="col-2 edit" href="/trick/{{ trick.id }}-{{ trick.slug }}/edit"><i class="fas fa-pen"></i></a>
+                                            <a class="col-2 cross" data-bs-toggle="modal" data-bs-target="#modalTrick{{ trick.id }}"><i class="fa fa-times" ></i></a>
+                                            {# Modal pour confirmer la supression du trick #}
+                                            <div class="modal fade" id="modalTrick{{ trick.id }}" tabindex="-1" aria-labelledby="modalLabel{{ trick.id }}" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="modalLabel{{ trick.id }}">Modification d'Article</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Êtes-vous sur de vouloir supprimer le trick <strong>{{ trick.title }}</strong> ?</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
+                                                            <a class="btn btn-primary" href="/trick/delete/{{ trick.id }}" role="button">Oui</a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -124,26 +134,28 @@
                                 {% endif %}
                                 <div class="card-body row">
                                     <a class="col-8" href="/trick/{{ trick.id }}-{{ trick.slug }}">{{ trick.title }}</a>
-                                    <a class="col-2 edit" href="/trick/{{ trick.id }}-{{ trick.slug }}/edit"><i class="fas fa-pen"></i></a>
-                                    <a class="col-2 cross" data-bs-toggle="modal" data-bs-target="#modalTrick{{ trick.id }}"><i class="fa fa-times" ></i></a>
-                                    {# Modal pour confirmer la supression du trick #}
-                                    <div class="modal fade" id="modalTrick{{ trick.id }}" tabindex="-1" aria-labelledby="modalLabel{{ trick.id }}" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="modalLabel{{ trick.id }}">Modification d'Article</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>Êtes-vous sur de vouloir supprimer le trick <strong>{{ trick.title }}</strong> ?</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
-                                                    <a class="btn btn-primary" href="/trick/delete/{{ trick.id }}" role="button">Oui</a>
+                                    {% if app.user %}
+                                        <a class="col-2 edit" href="/trick/{{ trick.id }}-{{ trick.slug }}/edit"><i class="fas fa-pen"></i></a>
+                                        <a class="col-2 cross" data-bs-toggle="modal" data-bs-target="#modalTrick{{ trick.id }}"><i class="fa fa-times" ></i></a>
+                                        {# Modal pour confirmer la supression du trick #}
+                                        <div class="modal fade" id="modalTrick{{ trick.id }}" tabindex="-1" aria-labelledby="modalLabel{{ trick.id }}" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="modalLabel{{ trick.id }}">Modification d'Article</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Êtes-vous sur de vouloir supprimer le trick <strong>{{ trick.title }}</strong> ?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
+                                                        <a class="btn btn-primary" href="/trick/delete/{{ trick.id }}" role="button">Oui</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -152,9 +164,4 @@
             {% endif %}
         </div>
     </section>
-    {% for message in app.flashes('success') %}
-        <script>
-            alert('{{ message }}');
-        </script>
-    {% endfor %}
 {% endblock %}
