@@ -19,18 +19,7 @@ Les administrateurs peuvent de plus accèder a des pages de gestion des commenta
 * Bootstrap 5
 * JavaScript
 * Composer 2.1.14 
-* Symfony 5.3.4 
-
-### Libraries
-
-* [twig/twig](https://twig.symfony.com/) 3.0
-* [phpmailer/phpmailer](https://github.com/PHPMailer/PHPMailer) 6.5
-* [vlucas/phpdotenv](https://github.com/vlucas/phpdotenv) 4.2
-* [beberlei/assert](https://github.com/beberlei/assert) 3.3
-* [symfony/routing](https://github.com/beberlei/assert) 5.3
-* [cocur/slugify](https://github.com/cocur/slugify) 3.2
-* [twig/intl-extra](https://github.com/twigphp/intl-extra) 3.3
-* [twig/extra-bundle](https://github.com/twigphp/twig-extra-bundle) 3.3
+* Symfony 5.3.4
 
 ## Installation
 
@@ -65,11 +54,16 @@ Créez ensuite la structure de cette base de donnée :
 php bin/console doctrine:migrations:migrate
 ```
 
+Et enfin pour remplir la base avec des donnée en utilisant la commande suivante :
+```
+php bin/console doctrine:fixtures:load
+```
 
-PARTIE DONNEES A MODIFIER
-
-Dans un second temps vous devez exécuter le script SQL **projet5-structure.sql** puis le script **projet5-donnees.sql** disponible dans le dossier **migration** dans votre système de base de données.
-
+Pour vous connecter en tant qu'administrateur vous pouvez récupérer le pseudo du 2ème utilisateur entré dans la base de donnée. Son mot de passe est écrit en clair dans le fichier **AppFixtures.php** à la ligne 54.
 ### Configuration du mailer
 
 La variable *MAILER_DSN* dans le fichier **.env** doit être modifier en fonction de votre configuration au niveau de l'accès a votre système SMTP, nous vous recommandons l'utilisation de *[MailTrap](https://mailtrap.io/)* pour l'envoi de mail de confirmation d'inscription ou la modification de mot de passe.
+
+## Auteurs
+
+[@SDdylan](https://github.com/SDdylan) sous la supervision de [@julienrusso-oc](https://github.com/julienrusso-oc) et de [@aurelienk](https://github.com/aurelienk).
