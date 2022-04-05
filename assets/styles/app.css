@@ -11435,7 +11435,7 @@ textarea.form-control-lg {
         height: 30em;
     }
     .card-home {
-        height: 28rem;
+        height: 22rem;
     }
 
     #displayMedias {
@@ -11455,7 +11455,7 @@ textarea.form-control-lg {
     }
 
     .card-home {
-        height: 19rem;
+        height: 25rem;
     }
 
     .form-register, .form-login, .form-password, .reset-password-text, .form-trick, .form-media {
@@ -11478,6 +11478,6 @@ textarea.form-control-lg {
     }
 
     .card-home {
-        height: 28rem;
+        height: 22rem;
     }
 }
