@@ -3,6 +3,8 @@
 
 Ce projet est un site communautaire présentant des figures de snowboard en PHP/Symfony.
 
+[![SymfonyInsight](https://insight.symfony.com/projects/47e26daa-af70-45b6-8fbb-d70cbf3e867b/big.svg)](https://insight.symfony.com/projects/47e26daa-af70-45b6-8fbb-d70cbf3e867b)
+
 ## Fonctionnalités
 
 Le visiteur peut naviguer sur les différentes pages recensant les figures.
