@@ -44,8 +44,6 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        $faker = Factory::create('fr_FR');
-
         $slugify = new Slugify();
 
         //creation users
@@ -159,10 +157,11 @@ class AppFixtures extends Fixture
             $user = $randomUser === 1 ? $simpleUser : $adminUser;
 
             $trick = new Trick();
-
+            $date = new \DateTime();
             $trick->setTitle($trickData[0])
                 ->setDescription($trickData[1])
-                ->setCreatedAt(new \DateTime())
+                ->setCreatedAt($date)
+                ->setModifiedAt($date)
                 ->setGroup($trickData[2])
                 ->setUser($user)
                 ->setSlug($slugify->slugify($trickData[0]));
