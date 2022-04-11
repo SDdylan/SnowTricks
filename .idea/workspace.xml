@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f6192bbf-6758-4e89-a8a2-18dc09b0a008" name="Changes" comment="updated final values for .env">
+    <list default="true" id="f6192bbf-6758-4e89-a8a2-18dc09b0a008" name="Changes" comment="Corrected fixture one last time.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/UserFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/UserFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/GroupFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/GroupFormType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/admin_trick_comments.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/admin_trick_comments.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/admin_user_comments.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/admin_user_comments.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/front/home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front/home.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/front/trick.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front/trick.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,7 +154,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Cours-API" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -196,6 +190,15 @@
       <workItem from="1648548581911" duration="574000" />
       <workItem from="1648628848714" duration="22722000" />
       <workItem from="1648729755627" duration="4482000" />
+      <workItem from="1649338826342" duration="19000" />
+      <workItem from="1649339080864" duration="108000" />
+      <workItem from="1649340638464" duration="14000" />
+      <workItem from="1649340754188" duration="999000" />
+      <workItem from="1649353978921" duration="607000" />
+      <workItem from="1649409972895" duration="1927000" />
+      <workItem from="1649524135040" duration="938000" />
+      <workItem from="1649605087710" duration="2271000" />
+      <workItem from="1649664097646" duration="5022000" />
     </task>
     <task id="LOCAL-00001" summary="deleted local env var in .env (now use a .env.local.php made with composer dump-env)&#10;updated css on the base template to have the footer always on the bottom of the screen, even on page without much content.&#10;updated all twig views for the password reset.">
       <created>1647446437858</created>
@@ -323,7 +326,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649086843917</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Corrected fixture one last time.">
+      <created>1649248492948</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1649248492948</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -362,6 +372,7 @@
     <MESSAGE value="added site.webmanifest" />
     <MESSAGE value="deleted useless code in UserChecker.php" />
     <MESSAGE value="Deleted useless img file&#10;Updated assets directory to make a correct Encore build" />
-    <option name="LAST_COMMIT_MESSAGE" value="Deleted useless img file&#10;Updated assets directory to make a correct Encore build" />
+    <MESSAGE value="Corrected fixture one last time." />
+    <option name="LAST_COMMIT_MESSAGE" value="Corrected fixture one last time." />
   </component>
 </project>
